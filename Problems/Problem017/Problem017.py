@@ -65,4 +65,26 @@ def NumToWord(n):
         ## Calculate the first word, i.e first word of 123,456 would be "one hundred and twenty three"
         firstword = tripledigit(int(str(n)[:length%3]))
         return firstword + " " + scalelist[length/3 - 1] + " " + NumToWord(int(str(n)[length%3:]))    
+
+## Returns the total number of characters in a list of strings, ignoring spaces.
+def CountCharactersInStringList(StringList):
+    if type(StringList) != list:
+        raise Exception("StringList must be a list")
+    count = 0
+    for s in StringList:
+        count += len(s.replace(" ",""))
+    return count
     
+## This extremely verbose function returns the sum of all characters in the
+## Word equivalents of the numbers from 1 to n.
+def SumCharactersInNumbersUpTo(n):
+    l = range(n+1)[1:]
+    NumCharList = []
+    for num in l:
+        NumCharList.append(NumToWord(num))
+    return CountCharactersInStringList(NumCharList)
+    
+print(SumCharactersInNumbersUpTo(1000))
+        
+    
+        
