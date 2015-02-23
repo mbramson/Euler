@@ -54,7 +54,8 @@ def NumToWord(n):
     if n < 1000:
         return tripledigit(n)
     length = len(str(n))
-    scalelist = ["thousand","million","billion","trillion","quadrillion","quintillion"]
+    scalelist = ["thousand","million","billion","trillion","quadrillion",
+                 "quintillion"]
     ## Must check if the firstword will be three digits. If it is, you run into
     ## issues with length%3 == 0 and not working well with string slices
     if length%3==0:
