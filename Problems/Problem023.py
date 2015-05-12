@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar 09 23:06:01 2015
+
+@author: Bramson
+
+A perfect number is a number for which the sum of its proper divisors is 
+exactly equal to the number. For example, the sum of the proper divisors of 28 
+would be 1 + 2 + 4 + 7 + 14 = 28, which means that 28 is a perfect number.
+
+A number n is called deficient if the sum of its proper divisors is less than n
+and it is called abundant if this sum exceeds n.
+
+As 12 is the smallest abundant number, 1 + 2 + 3 + 4 + 6 = 16, the smallest 
+number that can be written as the sum of two abundant numbers is 24. By
+mathematical analysis, it can be shown that all integers greater than 28123 can
+be written as the sum of two abundant numbers. However, this upper limit cannot
+be reduced any further by analysis even though it is known that the greatest 
+number that cannot be expressed as the sum of two abundant numbers is less than
+this limit.
+
+Find the sum of all the positive integers which cannot be written as the sum of
+two abundant numbers.
+"""
+
+"""
+First things first, let's come up with the fastest way to determine if a number
+is abundant first
+
+Obviously, if we start counting up n's divisors, and get past n, we can
+stop counting (and finding) divisors because we don't need to know them.
+So let's take the ProperDivisors algo we made in Problem 21 and modify it a bit
+"""
+def isAbundant(n):
+    if n < 1:
+        raise Exception("isAbundant(n): n must be greater than 0")
+    if n==1: return False
+    SumDivisors = 0
+    for i in xrange(1,int(n/2+1)):
+        if n%i==0: SumDivisors += i
+        if SumDivisors > n: return True
+    return False
+
+"""
+We can also tweak it easily to tell you whether n is deficient (-1), abundant 
+(1), or perfect (0). This function is O(n).
+"""
+def Abundance(n):
+    if n < 1:
+        raise Exception("isAbundant(n): n must be greater than 0")
+    if n==1: return 0
+    SumDivisors = 0
+    for i in xrange(1,int(n/2+1)):
+        if n%i==0: SumDivisors += i
+        if SumDivisors > n: return 1
+    if SumDivisors==n: return 0
+    return -1
+
+"""
+Luckily, we have a hard upper limit on numbers that can't be written as the sum
+of two abundant numbers: 28123. So the obvious next step is to simply output an
+array of numbers up to 28123 with their Abundance values. We'll figure out what
+to do with this later.
+"""
+# Produces an array where the value is -1, 0, or 1 depending on the abundance
+# of the index. It will produce these numbers up to and including n.
+def getAbundanceArray(n):
+    AbundanceArray = [0]
+    for i in range(1,n+1):
+        AbundanceArray.append(Abundance(i))
+    return AbundanceArray 
+"""
+Looking at the produced array, it is clear that abundance sums are not common.
+It is probably more useful to simply produce an array of numbers that are
+abundant. If this isn't actually used, it at least might help us notice a
+pattern.
+"""
+# Produces an array of all abundant numbers up to and including n
+def getAbundantNumbers(n):
+    AbundantNumberArray = []
+    for i in range(1,n+1):
+        if isAbundant(i): AbundantNumberArray.append(i)
+    return AbundantNumberArray
+"""
+Now that we have a list of abundant numbers, we can pretty easily determine
+whether a specific number can or cannot be expressed as a sum of two abundant
+numbers by brute forcing in O(nlogn) time, simply by traversing everything in
+the predetermined array getAbundantNumbers that is below the number we're
+examining. If we have to do this for every number below 28123, we may very well
+run into some time complexity issues. Hopefully we can bruteforce our way
+through, but if the number were say 28123000, we'd probably have to be more
+clever.
+
+We'll have to pass in the getAbundantNumbers(n) array, so that in the encasing
+call we can cache it and only have to run it once.
+"""
+# Returns True if n can be expressed as the sum of two abundant numbers in
+# AbundantNumberArray. It is expected that AbundantNumberArray will be
+# precomputed outside of this function.
+def CanBeExpressedAsSumOfTwoAbundantNumbers(n,AbundantNumberArray):
+    #1) Find the number of entries in AbundantNumberArray that are below n.
+    #      AbundantNumberArray is sorted, so this should be super quick.
+
+    #2) nested for loop where 2nd index is bound by first index O(nlogn)
+        #2b) If a sum is found, Return True
+    #3) Return False
+    
+print getAbundantNumbers(1000)
