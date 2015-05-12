@@ -66,11 +66,11 @@ to do with this later.
 # of the index. It will produce these numbers up to and including n.
 def getAbundanceArray(n):
     AbundanceArray = [0]
-    for i in range(1,n+1):
+    for i in xrange(1,n+1):
         AbundanceArray.append(Abundance(i))
     return AbundanceArray 
 """
-Looking at the produced array, it is clear that abundance sums are not common.
+Looking at the produced array, it is clear that abundant sums are not common.
 It is probably more useful to simply produce an array of numbers that are
 abundant. If this isn't actually used, it at least might help us notice a
 pattern.
@@ -78,7 +78,7 @@ pattern.
 # Produces an array of all abundant numbers up to and including n
 def getAbundantNumbers(n):
     AbundantNumberArray = []
-    for i in range(1,n+1):
+    for i in xrange(1,n+1):
         if isAbundant(i): AbundantNumberArray.append(i)
     return AbundantNumberArray
 """
@@ -92,17 +92,33 @@ through, but if the number were say 28123000, we'd probably have to be more
 clever.
 
 We'll have to pass in the getAbundantNumbers(n) array, so that in the encasing
-call we can cache it and only have to run it once.
+call we can cache it and only have to run it once. If we only intended to call
+CanBeExpressedAsSumOfTwoAbundantNumbers once, we obviously wouldn't have to do
+this.
 """
 # Returns True if n can be expressed as the sum of two abundant numbers in
 # AbundantNumberArray. It is expected that AbundantNumberArray will be
 # precomputed outside of this function.
 def CanBeExpressedAsSumOfTwoAbundantNumbers(n,AbundantNumberArray):
     #1) Find the number of entries in AbundantNumberArray that are below n.
-    #      AbundantNumberArray is sorted, so this should be super quick.
-
+    #      AbundantNumberArray is sorted, so this should be super quick.    
+    AbundantNumsBelowN = []
+    for i in xrange(0,n):
+        if n >= AbundantNumberArray[i]:
+            AbundantNumsBelowN = AbundantNumberArray[0:i]
     #2) nested for loop where 2nd index is bound by first index O(nlogn)
-        #2b) If a sum is found, Return True
-    #3) Return False
-    
-print getAbundantNumbers(1000)
+    for indexi,i in enumerate(AbundantNumsBelowN):
+        for indexj,j in enumerate(AbundantNumsBelowN[indexi:]):
+            ASum = AbundantNumsBelowN[indexi] + AbundantNumsBelowN[indexj]
+            if ASum == n: return True #2b) If a sum is found, Return True 
+            if n > ASum: break #Need to increment indexi.
+    return False #3) Otherwise, return false
+
+"""
+There are probably a few optimizations we can make to the previous function,
+but no immediately obvious ones that would reduce time complexity.
+
+Now for brute force. We simply iterate through all even numbers below 28123 and 
+keep a running sum of all numbers for which the previous function returns false
+"""
+print(getAbundantNumbers(1000))
