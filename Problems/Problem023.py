@@ -104,8 +104,9 @@ def CanBeExpressedAsSumOfTwoAbundantNumbers(n,AbundantNumberArray):
     #      AbundantNumberArray is sorted, so this should be super quick.    
     AbundantNumsBelowN = []
     for i in xrange(0,n):
-        if n >= AbundantNumberArray[i]:
+        if n <= AbundantNumberArray[i]:
             AbundantNumsBelowN = AbundantNumberArray[0:i]
+            break
     #2) nested for loop where 2nd index is bound by first index O(nlogn)
     for indexi,i in enumerate(AbundantNumsBelowN):
         for indexj,j in enumerate(AbundantNumsBelowN[indexi:]):
@@ -121,4 +122,26 @@ but no immediately obvious ones that would reduce time complexity.
 Now for brute force. We simply iterate through all even numbers below 28123 and 
 keep a running sum of all numbers for which the previous function returns false
 """
-print(getAbundantNumbers(1000))
+def BruteForceSumOfAllNonAbundantSumNumbersBelow(n):
+    runningsum = 0    
+    AbundantNumberArray = getAbundantNumbers(n)
+    for i in xrange(0,n):
+        if CanBeExpressedAsSumOfTwoAbundantNumbers(i,AbundantNumberArray) == False:
+            runningsum += i
+    return runningsum
+
+"""
+This is definitely not the way to go about this. This is extremely slow because
+we're repeating a lot of computation.
+
+Instead of iterating through every number and verifying that it is NOT a sum of
+two abundant numbers, we could simply iterate through every number and
+determine the numbers that are. This means we only have to worry about the 2nd
+nested for loops of CanBeExpressedAsSumOfTwoAbundantNumbers. We can then
+subtract the sum of all numbers that are the sums of two abundant numbers from
+the sum of all numbers 0 through 28123.
+"""
+
+#print(CanBeExpressedAsSumOfTwoAbundantNumbers(5000,getAbundantNumbers(5000)))
+print(BruteForceSumOfAllNonAbundantSumNumbersBelow(28123))
+
