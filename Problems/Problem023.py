@@ -103,16 +103,18 @@ def CanBeExpressedAsSumOfTwoAbundantNumbers(n,AbundantNumberArray):
     #1) Find the number of entries in AbundantNumberArray that are below n.
     #      AbundantNumberArray is sorted, so this should be super quick.    
     AbundantNumsBelowN = []
-    for i in xrange(0,n):
+    for i in xrange(0,n-1):
         if n <= AbundantNumberArray[i]:
             AbundantNumsBelowN = AbundantNumberArray[0:i]
             break
     #2) nested for loop where 2nd index is bound by first index O(nlogn)
     for indexi,i in enumerate(AbundantNumsBelowN):
         for indexj,j in enumerate(AbundantNumsBelowN[indexi:]):
-            ASum = AbundantNumsBelowN[indexi] + AbundantNumsBelowN[indexj]
-            if ASum == n: return True #2b) If a sum is found, Return True 
-            if n > ASum: break #Need to increment indexi.
+            ASum = i + j
+            if ASum == n:
+                print(n,i,j)
+                return True #2b) If a sum is found, Return True
+            if n < ASum: break #Need to increment indexi.
     return False #3) Otherwise, return false
 
 """
@@ -124,24 +126,25 @@ keep a running sum of all numbers for which the previous function returns false
 """
 def BruteForceSumOfAllNonAbundantSumNumbersBelow(n):
     runningsum = 0    
-    AbundantNumberArray = getAbundantNumbers(n)
+    AbundantNumberArray = getAbundantNumbers(n+10) #Avoid Index Out of bounds
     for i in xrange(0,n):
         if CanBeExpressedAsSumOfTwoAbundantNumbers(i,AbundantNumberArray) == False:
             runningsum += i
+            print(i)
     return runningsum
 
+#print(BruteForceSumOfAllNonAbundantSumNumbersBelow(28124))
+#This gives us the answer, but takes ~5 minutes to run.
 """
-This is definitely not the way to go about this. This is extremely slow because
-we're repeating a lot of computation.
-
 Instead of iterating through every number and verifying that it is NOT a sum of
 two abundant numbers, we could simply iterate through every number and
 determine the numbers that are. This means we only have to worry about the 2nd
 nested for loops of CanBeExpressedAsSumOfTwoAbundantNumbers. We can then
 subtract the sum of all numbers that are the sums of two abundant numbers from
-the sum of all numbers 0 through 28123.
+the sum of all numbers 0 through 28123. This should save us from a lot of
+duplicate computation.
 """
 
-#print(CanBeExpressedAsSumOfTwoAbundantNumbers(5000,getAbundantNumbers(5000)))
-print(BruteForceSumOfAllNonAbundantSumNumbersBelow(28123))
+
+
 
