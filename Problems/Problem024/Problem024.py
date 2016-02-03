@@ -25,3 +25,4 @@ def nthPermutation(digits, n):
     #1)determine the next permutation, and make the change. increment a counter
     #and repeat until we hit n.
     #2)find a formulaic method that determines the nth permutation directly
+    #3)produce an array of every possible permutation and sort it.
