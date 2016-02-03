@@ -24,5 +24,5 @@ fn calculate_sum_of_multiples(a: u32, b: u32, limit: u32) -> u32 {
 
 #[test]
 fn test_original_example_returns_correctly() {
-    assert!(23 == calculate_sum_of_multiples(3, 5, 10))
+    assert_eq!(23, calculate_sum_of_multiples(3, 5, 10))
 }
