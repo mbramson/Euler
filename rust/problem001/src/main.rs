@@ -75,8 +75,13 @@ fn test_original_example_returns_correctly() {
 }
 
 #[test]
-fn test_b_is_a_multiple_of_a() {
+fn test_b_is_multiple_of_a() {
     assert_eq!(18, calculate_sum_of_multiples(3, 6, 10));
+}
+
+#[test]
+fn test_a_is_multiple_of_b(){
+    assert_eq!(56 , calculate_sum_of_multiples(6, 2, 15));
 }
 
 fn is_multiple(a: u32, b:u32) -> bool {
