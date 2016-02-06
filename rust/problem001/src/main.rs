@@ -56,6 +56,8 @@ fn calculate_sum_of_multiples(a: u32, b: u32, limit: u32) -> u32 {
     let a_n: u32 = (limit - 1)/a;
     total += a  * (a_n) * (a_n + 1) / 2;
 
+    if is_multiple(a, b) { return total; }
+
     // add all multiples of b
     let b_n: u32 = (limit - 1)/b;
     total += b * (b_n) * (b_n + 1) / 2;
@@ -69,5 +71,36 @@ fn calculate_sum_of_multiples(a: u32, b: u32, limit: u32) -> u32 {
 
 #[test]
 fn test_original_example_returns_correctly() {
-    assert_eq!(23, calculate_sum_of_multiples(3, 5, 10))
+    assert_eq!(23, calculate_sum_of_multiples(3, 5, 10));
+}
+
+#[test]
+fn test_b_is_a_multiple_of_a() {
+    assert_eq!(18, calculate_sum_of_multiples(3, 6, 10));
+}
+
+fn is_multiple(a: u32, b:u32) -> bool {
+    if a % b == 0 {
+        return true;
+    } else if b % a == 0 {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#[test]
+fn test_is_multiple_returns_true_if_b_is_multiple_of_a() {
+    assert!(is_multiple(7, 14), "14 is a multiple of 7");
+}
+
+#[test]
+fn test_is_multiple_returns_true_if_a_is_multiple_of_b() {
+    assert!(is_multiple(10, 5), "10 is a multiple of 5");
+}
+
+#[test]
+#[should_panic]
+fn test_is_multiple_returns_false_if_not_multiple() {
+    assert!(is_multiple(3, 5), "5 is not a multiple of 3");
 }
