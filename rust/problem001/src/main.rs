@@ -56,7 +56,7 @@ fn calculate_sum_of_multiples(a: u32, b: u32, limit: u32) -> u32 {
     let a_n: u32 = (limit - 1)/a;
     total += a  * (a_n) * (a_n + 1) / 2;
 
-    if is_multiple(a, b) { return total; }
+    if is_multiple_of(b, a) { return total; }
 
     // add all multiples of b
     let b_n: u32 = (limit - 1)/b;
@@ -84,10 +84,8 @@ fn test_a_is_multiple_of_b(){
     assert_eq!(56 , calculate_sum_of_multiples(6, 2, 15));
 }
 
-fn is_multiple(a: u32, b:u32) -> bool {
+fn is_multiple_of(a: u32, b:u32) -> bool {
     if a % b == 0 {
-        return true;
-    } else if b % a == 0 {
         return true;
     } else {
         return false;
@@ -95,17 +93,18 @@ fn is_multiple(a: u32, b:u32) -> bool {
 }
 
 #[test]
-fn test_is_multiple_returns_true_if_b_is_multiple_of_a() {
-    assert!(is_multiple(7, 14), "14 is a multiple of 7");
+#[should_panic]
+fn test_is_multiple_of_returns_false_if_b_is_multiple_of_a() {
+    assert!(is_multiple_of(7, 14), "7 is not a multiple of 14");
 }
 
 #[test]
-fn test_is_multiple_returns_true_if_a_is_multiple_of_b() {
-    assert!(is_multiple(10, 5), "10 is a multiple of 5");
+fn test_is_multiple_of_returns_true_if_a_is_multiple_of_b() {
+    assert!(is_multiple_of(10, 5), "10 is a multiple of 5");
 }
 
 #[test]
 #[should_panic]
-fn test_is_multiple_returns_false_if_not_multiple() {
-    assert!(is_multiple(3, 5), "5 is not a multiple of 3");
+fn test_is_multiple_of_returns_false_if_not_multiple() {
+    assert!(is_multiple_of(3, 5), "5 is not a multiple of 3");
 }
