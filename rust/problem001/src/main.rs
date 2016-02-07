@@ -50,27 +50,24 @@ fn main() {
 }
 
 fn calculate_sum_of_multiples(a: u32, b: u32, limit: u32) -> u32 {
-    let mut total: u32 = 0;
-    // add all multiples of a
 
+    // calculate sum of all multiples of a
     let a_n: u32 = (limit - 1)/a;
     let a_total: u32 = a * (a_n) * (a_n + 1) / 2;
-    total += a_total;
 
-    if is_multiple_of(b, a) { return a_total; }
-
-    // add all multiples of b
+    // calculate sum of all multiples of b
     let b_n: u32 = (limit - 1)/b;
     let b_total: u32 = b * (b_n) * (b_n + 1) / 2;
-    total += b_total;
 
-    if is_multiple_of(a, b) { return b_total; }
-
-    // subtract out all multiples of a * b since we've double counted them
+    // calculate sum of all multiples of a * b
     let ab_n: u32 = (limit - 1) / (a*b);
-    total -= a * b * (ab_n) * (ab_n + 1) / 2;
+    let ab_total: u32 = a * b * (ab_n) * (ab_n + 1) / 2;
 
-    return total;
+    match (is_multiple_of(b, a), is_multiple_of(a, b)) {
+        (true, _) => { return a_total },
+        (_, true) => { return b_total },
+        (_, _)    => { return a_total + b_total - ab_total }
+    }
 }
 
 #[test]
