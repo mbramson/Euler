@@ -84,8 +84,13 @@ fn test_b_is_multiple_of_a() {
 }
 
 #[test]
-fn test_a_is_multiple_of_b(){
-    assert_eq!(56 , calculate_sum_of_multiples(6, 2, 15));
+fn test_a_is_multiple_of_b() {
+    assert_eq!(56, calculate_sum_of_multiples(6, 2, 15));
+}
+
+#[test]
+fn test_a_is_equal_to_b() {
+    assert_eq!(12 , calculate_sum_of_multiples(2, 2, 8));
 }
 
 fn is_multiple_of(a: u32, b:u32) -> bool {
