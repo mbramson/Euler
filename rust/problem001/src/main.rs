@@ -54,13 +54,17 @@ fn calculate_sum_of_multiples(a: u32, b: u32, limit: u32) -> u32 {
     // add all multiples of a
 
     let a_n: u32 = (limit - 1)/a;
-    total += a  * (a_n) * (a_n + 1) / 2;
+    let a_total: u32 = a * (a_n) * (a_n + 1) / 2;
+    total += a_total;
 
-    if is_multiple_of(b, a) { return total; }
+    if is_multiple_of(b, a) { return a_total; }
 
     // add all multiples of b
     let b_n: u32 = (limit - 1)/b;
-    total += b * (b_n) * (b_n + 1) / 2;
+    let b_total: u32 = b * (b_n) * (b_n + 1) / 2;
+    total += b_total;
+
+    if is_multiple_of(a, b) { return b_total; }
 
     // subtract out all multiples of a * b since we've double counted them
     let ab_n: u32 = (limit - 1) / (a*b);
