@@ -74,23 +74,33 @@ fn calculate_sum_of_multiples(a: u32, b: u32, limit: u32) -> u32 {
 }
 
 #[test]
-fn test_original_example_returns_correctly() {
+fn test_calculate_original_example_returns_correctly() {
     assert_eq!(23, calculate_sum_of_multiples(3, 5, 10));
 }
 
 #[test]
-fn test_b_is_multiple_of_a() {
+fn test_calculate_b_is_multiple_of_a() {
     assert_eq!(18, calculate_sum_of_multiples(3, 6, 10));
 }
 
 #[test]
-fn test_a_is_multiple_of_b() {
+fn test_calculate_a_is_multiple_of_b() {
     assert_eq!(56, calculate_sum_of_multiples(6, 2, 15));
 }
 
 #[test]
-fn test_a_is_equal_to_b() {
-    assert_eq!(12 , calculate_sum_of_multiples(2, 2, 8));
+fn test_calculate_a_is_equal_to_b() {
+    assert_eq!(12, calculate_sum_of_multiples(2, 2, 8));
+}
+
+#[test]
+fn test_calculate_a_is_less_than_limit() {
+    assert_eq!(40, calculate_sum_of_multiples(4, 25, 20));
+}
+
+#[test]
+fn test_calculate_b_is_less_than_limit() {
+    assert_eq!(6, calculate_sum_of_multiples(30, 2, 6));
 }
 
 fn is_multiple_of(a: u32, b:u32) -> bool {
