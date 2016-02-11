@@ -32,10 +32,28 @@ fn main() {
 }
 
 fn fibonacci_sum(multiple: u32, limit: u32) -> u32 {
-    return 10;
+    
+    let mut a: u32 = 0;
+    let mut b: u32 = 1;
+    let mut total: u32 = 0;
+
+    while b < limit {
+        b = a + b;
+        a = b - a;
+        if b % multiple == 0 {
+            total += b;
+        }
+    }
+
+    return total;
 }
 
 #[test]
-fn test_sum_of_all_even_fibonacis_below_20() {
-    assert_eq!(10, fibonacci_sum(2, 20))
+fn test_sum_of_all_even_fibonaccis_below_20() {
+    assert_eq!(10, fibonacci_sum(2, 20));
+}
+
+#[test]
+fn test_sum_of_all_even_fibonaccis_below_5() {
+    assert_eq!(2, fibonacci_sum(2, 5));
 }
