@@ -38,11 +38,11 @@ fn fibonacci_sum(multiple: u32, limit: u32) -> u32 {
     let mut total: u32 = 0;
 
     while b < limit {
-        b = a + b;
-        a = b - a;
         if b % multiple == 0 {
             total += b;
         }
+        b = a + b;
+        a = b - a;
     }
 
     return total;
@@ -56,4 +56,19 @@ fn test_sum_of_all_even_fibonaccis_below_20() {
 #[test]
 fn test_sum_of_all_even_fibonaccis_below_5() {
     assert_eq!(2, fibonacci_sum(2, 5));
+}
+
+#[test]
+fn test_sum_of_all_3_multiple_fibonaccis_below_50() {
+    assert_eq!(168, fibonacci_sum(3, 500));
+}
+
+#[test]
+fn test_sum_of_all_5_multiple_fibonaccis_below_100000() {
+    assert_eq!(82460, fibonacci_sum(5, 100000));
+}
+
+#[test]
+fn test_sum_of_all_whole_fibonaccis_below_5() {
+    assert_eq!(7, fibonacci_sum(1, 5));
 }
