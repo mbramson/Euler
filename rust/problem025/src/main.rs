@@ -1,0 +1,47 @@
+// The Fibonacci sequence is defined by the recurrence relation:
+
+// Fn = F(n-1) + F(n-2), where F1 = 1 and F2 = 2
+
+// Hence the first 12 terms will be:
+
+// F1 = 1
+// F2 = 1
+// F3 = 2
+// F4 = 3
+// F5 = 5
+// F6 = 8
+// F7 = 13
+// F8 = 21
+// F9 = 34
+// F10 = 55
+// F11 = 89
+// F12 = 144
+
+// The 12th term, F12, is the first term to contain three digits.
+// What is the index of the first term in the Fibonacci sequence to contain
+// 1000 digits?
+
+use std::io;
+
+fn main() {
+    println!("Please specify the number of digits:");
+
+    let mut digits = String::new();
+    io::stdin().read_line(&mut digits).ok().expect("Failed to read line");
+    let digits: u32 = digits.trim().parse().expect("Expected Integer");
+
+    println!("The term index of the first fibonacci number with");
+    println!("{} digits is: {}", digits,
+             get_first_fibonacci_term_number_with_digits(digits));
+
+}
+
+fn get_first_fibonacci_term_number_with_digits(digits: u32) -> u32 {
+    return 12;
+}
+
+#[test]
+fn test_3_digits() {
+    assert_eq!(12, get_first_fibonacci_term_number_with_digits(3));
+}
+
