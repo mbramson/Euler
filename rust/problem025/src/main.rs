@@ -21,7 +21,12 @@
 // What is the index of the first term in the Fibonacci sequence to contain
 // 1000 digits?
 
+extern crate num;
+
 use std::io;
+use num::{BigUint};
+use num::bigint::ToBigUint;
+
 
 fn main() {
     println!("Please specify the number of digits:");
@@ -36,16 +41,16 @@ fn main() {
 
 }
 
-fn get_first_fibonacci_term_number_with_digits(digits: u32) -> u32 {
-    return 12;
+fn get_first_fibonacci_term_number_with_digits(digits: u32) -> BigUint {
+    return 12.to_biguint().unwrap();
 }
 
 #[test]
 fn test_3_digits() {
-    assert_eq!(12, get_first_fibonacci_term_number_with_digits(3));
+    assert_eq!(12.to_biguint().unwrap(), get_first_fibonacci_term_number_with_digits(3));
 }
 
 #[test]
 fn test_17_digits() {
-    assert_eq!(79, get_first_fibonacci_term_number_with_digits(17));
+assert_eq!(79.to_biguint().unwrap(), get_first_fibonacci_term_number_with_digits(17));
 }
