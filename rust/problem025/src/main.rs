@@ -45,3 +45,7 @@ fn test_3_digits() {
     assert_eq!(12, get_first_fibonacci_term_number_with_digits(3));
 }
 
+#[test]
+fn test_17_digits() {
+    assert_eq!(79, get_first_fibonacci_term_number_with_digits(17));
+}
