@@ -11,36 +11,30 @@ fn main() {
 
     let mut a = String::new();
 
-    io::stdin().read_line(&mut a)
-               .ok()
+    io::stdin().read_line(&mut a).ok()
                .expect("Failed to read line");
 
-    let a: u32 = a.trim()
-                  .parse()
+    let a: u32 = a.trim().parse()
                   .expect("Expected Integer");
 
     println!("Please enter second multiple:");
 
     let mut b = String::new();
 
-    io::stdin().read_line(&mut b)
-               .ok()
+    io::stdin().read_line(&mut b).ok()
                .expect("Failed to read line");
 
-    let b: u32 = b.trim()
-                  .parse()
+    let b: u32 = b.trim().parse()
                   .expect("Expected Integer");
 
     println!("Please enter an upper limit:");
 
     let mut limit = String::new();
 
-    io::stdin().read_line(&mut limit)
-               .ok()
+    io::stdin().read_line(&mut limit).ok()
                .expect("Failed to read line");
 
-    let limit: u32 = limit.trim()
-                          .parse()
+    let limit: u32 = limit.trim().parse()
                           .expect("Expected Integer");
 
     let result: u32 = calculate_sum_of_multiples(a, b, limit);
