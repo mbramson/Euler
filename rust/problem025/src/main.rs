@@ -52,5 +52,21 @@ fn test_3_digits() {
 
 #[test]
 fn test_17_digits() {
-assert_eq!(79.to_biguint().unwrap(), get_first_fibonacci_term_number_with_digits(17));
+assert_eq!(79, get_first_fibonacci_term_number_with_digits(17));
 }
+
+fn get_num_digits(n: BigUint) -> usize {
+    return n.to_string().len();
+}
+
+#[test]
+fn test_get_num_digits_5_digits() {
+    assert_eq!(5, get_num_digits(12345.to_biguint().unwrap()));
+}
+
+#[test]
+fn test_get_num_digits_20_digits() {
+    let a: BigUint = "12345678901234567890".parse::<BigUint>().unwrap();
+    assert_eq!(20, get_num_digits(a));
+}
+
