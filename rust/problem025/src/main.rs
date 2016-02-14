@@ -24,7 +24,8 @@
 extern crate num;
 
 use std::io;
-use num::{BigUint};
+use std::mem::replace;
+use num::{BigUint, Zero, One};
 use num::bigint::ToBigUint;
 
 
@@ -41,13 +42,23 @@ fn main() {
 
 }
 
-fn get_first_fibonacci_term_number_with_digits(digits: u32) -> BigUint {
-    return 12.to_biguint().unwrap();
+fn get_first_fibonacci_term_number_with_digits(digits: u32) -> u32 {
+    let mut a: BigUint = Zero::zero();
+    let mut b: BigUint = One::one();
+    let mut term: u32 = 0;
+
+    while term < 12 {
+        let c = a + &b;
+        a = replace(&mut b, c);
+        term += 1;
+    }
+    println!("{}", a);
+    return term
 }
 
 #[test]
 fn test_3_digits() {
-    assert_eq!(12.to_biguint().unwrap(), get_first_fibonacci_term_number_with_digits(3));
+    assert_eq!(12, get_first_fibonacci_term_number_with_digits(3));
 }
 
 #[test]
