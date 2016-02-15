@@ -66,8 +66,9 @@ fn test_17_digits() {
 assert_eq!(79, get_first_fibonacci_term_number_with_digits(17));
 }
 
-fn get_num_digits(n: BigUint) -> usize {
-    return n.to_string().len();
+fn get_num_digits(n: BigUint) -> u32 {
+    let a = n.to_string().len() as u32;
+    return a;
 }
 
 #[test]
