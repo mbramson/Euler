@@ -43,17 +43,19 @@ fn main() {
 }
 
 fn get_first_fibonacci_term_number_with_digits(digits: u32) -> u32 {
-    let mut a: BigUint = Zero::zero();
-    let mut b: BigUint = One::one();
+    let mut a: BigUint = 0.to_biguint().unwrap();
+    let mut b: BigUint = 1.to_biguint().unwrap();
     let mut term: u32 = 0;
 
-    while term < 12 {
-        let c = a + &b;
-        a = replace(&mut b, c);
+    while term < 2000 {
+        b = a + b;
+        a = b - a;
         term += 1;
+        if b.to_string().len() as u32 >= digits {
+            return term;
+        }
     }
-    println!("{}", a);
-    return term
+    return 0;
 }
 
 #[test]
