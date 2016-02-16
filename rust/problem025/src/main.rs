@@ -25,7 +25,7 @@ extern crate num;
 
 use std::io;
 use std::mem::replace;
-use num::{BigUint, Zero, One};
+use num::BigUint;
 use num::bigint::ToBigUint;
 
 
@@ -47,12 +47,13 @@ fn get_first_fibonacci_term_number_with_digits(digits: u32) -> u32 {
     let mut b: BigUint = 1.to_biguint().unwrap();
     let mut term: u32 = 0;
 
-    while term < 2000 {
-        b = a + b;
-        a = b - a;
+    while term < 100000 {
+        let d = &a + &b;
+        let c = &a + &b;
+        a = replace(&mut b, c);
         term += 1;
-        if b.to_string().len() as u32 >= digits {
-            return term;
+        if d.to_string().len() as u32 >= digits {
+            return term + 1;
         }
     }
     return 0;
