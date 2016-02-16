@@ -52,7 +52,7 @@ fn get_first_fibonacci_term_number_with_digits(digits: u32) -> u32 {
         let c = &a + &b;
         a = replace(&mut b, c);
         term += 1;
-        if d.to_string().len() as u32 >= digits {
+        if get_num_digits(d) >= digits {
             return term + 1;
         }
     }
@@ -66,12 +66,11 @@ fn test_3_digits() {
 
 #[test]
 fn test_17_digits() {
-assert_eq!(79, get_first_fibonacci_term_number_with_digits(17));
+    assert_eq!(79, get_first_fibonacci_term_number_with_digits(17));
 }
 
 fn get_num_digits(n: BigUint) -> u32 {
-    let a = n.to_string().len() as u32;
-    return a;
+    return n.to_string().len() as u32;
 }
 
 #[test]
