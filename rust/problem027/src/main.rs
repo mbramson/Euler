@@ -27,3 +27,7 @@ fn get_a_and_b_for_max_consecutive_primes(a_limit: &u32, b_limit: &u32) -> (u32,
     return (1 as u32, 2 as u32);
 }
 
+#[test]
+fn it_returns_1_and_41_for_limit_of_1_and_41() {
+    assert_eq!((1, 41), get_a_and_b_for_max_consecutive_primes(&1, &41))
+}
