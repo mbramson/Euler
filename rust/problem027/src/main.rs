@@ -27,7 +27,46 @@ fn get_a_and_b_for_max_consecutive_primes(a_limit: &u32, b_limit: &u32) -> (u32,
     return (1 as u32, 2 as u32);
 }
 
-#[test]
-fn it_returns_1_and_41_for_limit_of_1_and_41() {
-    assert_eq!((1, 41), get_a_and_b_for_max_consecutive_primes(&1, &41))
+//#[test]
+//fn it_returns_1_and_41_for_limit_of_1_and_41() {
+//    assert_eq!((1, 41), get_a_and_b_for_max_consecutive_primes(&1, &41))
+//}
+
+fn is_prime(n: u64) -> bool {
+    if n == 2 { return true; }
+    if n < 3 { return false; }
+    let limit = (n as f64).sqrt() as u64 + 1;
+    for i in 2..limit {
+        if n % i == 0 { return false }
+    }
+    true
 }
+
+#[test]
+fn is_prime_returns_prime_for_5() {
+    assert_eq!(true, is_prime(5));
+}
+
+#[test]
+fn is_prime_return_false_for_6() {
+    assert_eq!(false, is_prime(6));
+}
+
+#[test]
+fn is_prime_returns_false_for_1() {
+    assert_eq!(false, is_prime(1));
+}
+
+#[test]
+fn is_prime_returns_true_for_2() {
+    assert_eq!(true, is_prime(2));
+}
+
+#[test]
+fn is_prime_returns_true_for_11() {
+    assert_eq!(true, is_prime(11));
+}
+
+#[test] fn is_prime_returns_false_for_10() {
+    assert_eq!(false, is_prime(10));
+}   
