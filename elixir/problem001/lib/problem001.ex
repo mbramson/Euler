@@ -14,4 +14,8 @@ defmodule MultipleSummer do
   def get_iterations(n, limit) do
     div(limit-1, n)
   end
+
+  def remove_duplicates_in(list) do
+    Enum.uniq(list)
+  end
 end

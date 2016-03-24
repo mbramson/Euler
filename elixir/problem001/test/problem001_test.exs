@@ -30,4 +30,12 @@ defmodule Problem001Test do
     n = MultipleSummer.get_iterations(3 ,12)
     assert n == 3, "there should be 3 iterations"
   end
+
+  test "that remove_duplicates removes duplicates" do
+    assert MultipleSummer.remove_duplicates_in([1, 2, 2]) == [1, 2]
+  end
+
+  test "that remove_duplicates removes duplicates when not sequential" do
+    assert MultipleSummer.remove_duplicates_in([1, 2, 3, 2]) == [1, 2, 3]
+  end
 end
