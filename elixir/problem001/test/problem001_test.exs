@@ -3,8 +3,12 @@ defmodule Problem001Test do
   doctest MultipleSummer
 
   # sum_of_multiples tests
-  test "that sum_of_multiples gives correct sum when passed single item list" do
+  test "that sum_of_multiples gives correct sum for single item list" do
     assert MultipleSummer.sum_of_multiples([3], 10) == 18
+  end
+
+  test "that sum_of_multiples gives correct sum for two identical items" do
+    assert MultipleSummer.sum_of_multiples([5, 5], 20) == 30 
   end
 
   # sum_of_single_multiple tests
