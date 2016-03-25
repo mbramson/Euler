@@ -18,4 +18,9 @@ defmodule MultipleSummer do
   def remove_duplicates_in(list) do
     Enum.uniq(list)
   end
+
+  def remove_inter_multiples(list) do
+    [x|y] = list
+    [x]
+  end
 end

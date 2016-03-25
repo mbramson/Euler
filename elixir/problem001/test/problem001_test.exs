@@ -38,4 +38,12 @@ defmodule Problem001Test do
   test "that remove_duplicates removes duplicates when not sequential" do
     assert MultipleSummer.remove_duplicates_in([1, 2, 3, 2]) == [1, 2, 3]
   end
+
+  test "that remove_multiples_of_others_in returns same single number" do
+    assert MultipleSummer.remove_inter_multiples([2]) == [2]
+  end
+
+  test "that remove_inter_multiples returns 2 for 2 and 4" do
+    assert MultipleSummer.remove_inter_multiples([2,4]) == [2]
+  end
 end
