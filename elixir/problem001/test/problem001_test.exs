@@ -2,7 +2,7 @@ defmodule Problem001Test do
   use ExUnit.Case, async: true
   doctest MultipleSummer
 
-  #test "that "
+  # sum_of_multiples test
 
   test "that sum_of_multiples returns 12 for multiples of 3 under 10" do
     assert MultipleSummer.sum_of_multiples(3, 10) == 18
@@ -15,6 +15,8 @@ defmodule Problem001Test do
   test "that sum_of_multiples returns 0 for multiples of 5 under 5" do
     assert MultipleSummer.sum_of_multiples(5, 5) == 0
   end
+
+  # get_iterations tests
 
   test "that get_iterations returns an integer" do
     n = MultipleSummer.get_iterations(4, 10)
@@ -31,6 +33,8 @@ defmodule Problem001Test do
     assert n == 3, "there should be 3 iterations"
   end
 
+  # remove_duplicates tests
+
   test "that remove_duplicates removes duplicates" do
     assert MultipleSummer.remove_duplicates_in([1, 2, 2]) == [1, 2]
   end
@@ -39,7 +43,9 @@ defmodule Problem001Test do
     assert MultipleSummer.remove_duplicates_in([1, 2, 3, 2]) == [1, 2, 3]
   end
 
-  test "that remove_multiples_of_others_in returns same single number" do
+  # remove_inter_multiples tests
+
+  test "that remove_inter_multiples returns same single number" do
     assert MultipleSummer.remove_inter_multiples([2]) == [2]
   end
 
@@ -50,6 +56,12 @@ defmodule Problem001Test do
   test "that remove_inter_multiples returns [2,3] for [2,3]" do
     assert MultipleSummer.remove_inter_multiples([2,3]) == [2,3]
   end
+
+  test "that remove_inter_multiples returns [2, 5] for [4,10,2,5,15]" do
+    assert MultipleSummer.remove_inter_multiples([4,10,2,5,15]) == [2,5]
+  end
+
+  # has_divisor_in? tests
 
   test "that has_divisor_in? is true when  divisor exists" do
     assert MultipleSummer.has_divisor_in?(6, [3])
@@ -64,7 +76,7 @@ defmodule Problem001Test do
   end
 
   test "that has_divisor_in? is false when only divisor is the same number" do
-    assert MultipleSummer.has_divisor_in?(5, [3, 5]) == false 
+    assert MultipleSummer.has_divisor_in?(5, [3, 5]) == false
   end
 
 end
