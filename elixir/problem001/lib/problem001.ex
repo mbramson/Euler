@@ -23,4 +23,10 @@ defmodule MultipleSummer do
     [x|y] = list
     [x]
   end
+
+  def has_divisor_in?(n, list) do
+    # filter list for only perfect divisors that aren't equal to n
+    divisors = for d <- list, rem(n, d) == 0 and n != d, do: d
+    divisors  != []
+  end
 end

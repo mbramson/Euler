@@ -43,7 +43,28 @@ defmodule Problem001Test do
     assert MultipleSummer.remove_inter_multiples([2]) == [2]
   end
 
-  test "that remove_inter_multiples returns 2 for 2 and 4" do
+  test "that remove_inter_multiples returns [2] for [2,4]" do
     assert MultipleSummer.remove_inter_multiples([2,4]) == [2]
   end
+
+  test "that remove_inter_multiples returns [2,3] for [2,3]" do
+    assert MultipleSummer.remove_inter_multiples([2,3]) == [2,3]
+  end
+
+  test "that has_divisor_in? is true when  divisor exists" do
+    assert MultipleSummer.has_divisor_in?(6, [3])
+  end
+
+  test "that has_divisor_in? is true when divisor exists in long list" do
+    assert MultipleSummer.has_divisor_in?(10, [3, 7, 9, 6, 15, 5])
+  end
+
+  test "that has_divisor_in? is false when no divisor exists in list" do
+    assert MultipleSummer.has_divisor_in?(15, [4, 9]) == false
+  end
+
+  test "that has_divisor_in? is false when only divisor is the same number" do
+    assert MultipleSummer.has_divisor_in?(5, [3, 5]) == false 
+  end
+
 end
