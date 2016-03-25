@@ -6,7 +6,12 @@
 
 defmodule MultipleSummer do
 
-  def sum_of_multiples(n, limit) do
+  def sum_of_multiples(multiples, limit) do
+    totals = for n <- multiples, do: sum_of_single_multiple(n, limit)
+    Enum.sum(totals)
+  end
+
+  def sum_of_single_multiple(n, limit) do
     iterations = get_iterations(n, limit)
     n * iterations * (iterations + 1) / 2
   end

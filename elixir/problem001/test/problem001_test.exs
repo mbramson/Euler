@@ -2,19 +2,25 @@ defmodule Problem001Test do
   use ExUnit.Case, async: true
   doctest MultipleSummer
 
-  # sum_of_multiples test
+  # sum_of_multiples tests
+  test "that sum_of_multiples gives correct sum when passed single item list" do
+    assert MultipleSummer.sum_of_multiples([3], 10) == 18
+  end
+
+  # sum_of_single_multiple tests
 
   test "that sum_of_multiples returns 12 for multiples of 3 under 10" do
-    assert MultipleSummer.sum_of_multiples(3, 10) == 18
+    assert MultipleSummer.sum_of_single_multiple(3, 10) == 18
   end
 
   test "that sum_of_multiples returns 0 for multiples of 2 under 1" do
-    assert MultipleSummer.sum_of_multiples(2, 1) == 0
+    assert MultipleSummer.sum_of_single_multiple(2, 1) == 0
   end
 
   test "that sum_of_multiples returns 0 for multiples of 5 under 5" do
-    assert MultipleSummer.sum_of_multiples(5, 5) == 0
+    assert MultipleSummer.sum_of_single_multiple(5, 5) == 0
   end
+
 
   # get_iterations tests
 
