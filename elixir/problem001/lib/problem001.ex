@@ -20,8 +20,9 @@ defmodule MultipleSummer do
   end
 
   def remove_inter_multiples(list) do
-    [x|y] = list
-    [x]
+    # filter out any numbers in the list that have a divisor in the list that
+    # isn't itself.
+    for n <- list, !has_divisor_in?(n, list), do: n
   end
 
   def has_divisor_in?(n, list) do
