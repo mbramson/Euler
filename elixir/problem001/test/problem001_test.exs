@@ -8,7 +8,11 @@ defmodule Problem001Test do
   end
 
   test "that sum_of_multiples gives correct sum for two identical items" do
-    assert MultipleSummer.sum_of_multiples([5, 5], 20) == 30 
+    assert MultipleSummer.sum_of_multiples([5, 5], 20) == 30
+  end
+
+  test "that sum_of_multiples give correct sum when multiples of each other" do
+    assert MultipleSummer.sum_of_multiples([2, 4], 10) == 20 
   end
 
   # sum_of_single_multiple tests

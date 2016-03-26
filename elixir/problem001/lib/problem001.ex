@@ -7,7 +7,11 @@
 defmodule MultipleSummer do
 
   def sum_of_multiples(multiples, limit) do
+    # remove duplicates in the multiples list
     multiples = remove_duplicates_in(multiples)
+    # remove any numbers that are multiples of a smaller number since any
+    # multiple of the larger number is also a multiple of the smaller number
+    multiples = remove_inter_multiples(multiples)
     totals = for n <- multiples, do: sum_of_single_multiple(n, limit)
     Enum.sum(totals)
   end
