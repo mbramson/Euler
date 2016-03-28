@@ -16,7 +16,7 @@ defmodule Problem001Test do
   end
 
   test "that sum_multiples gives correct sum for two numbers with low limit" do
-    assert MultipleSummer.sum_multiples([3, 4], 5) == 7 
+    assert MultipleSummer.sum_multiples([3, 4], 5) == 7
   end
 
   # sum_of_single_multiple tests
@@ -32,7 +32,6 @@ defmodule Problem001Test do
   test "that sum_of_multiples returns 0 for multiples of 5 under 5" do
     assert MultipleSummer.sum_of_single_multiple(5, 5) == 0
   end
-
 
   # get_iterations tests
 
@@ -95,6 +94,20 @@ defmodule Problem001Test do
 
   test "that has_divisor_in? is false when only divisor is the same number" do
     assert MultipleSummer.has_divisor_in?(5, [3, 5]) == false
+  end
+
+  # get_double_counts tests
+
+  test "that double_counted_multiples returns [] when given single item list" do
+    assert MultipleSummer.double_counted_multiples([3]) == []
+  end
+
+  test "that double_counted_multiples returns product of two multiples" do
+    assert MultipleSummer.double_counted_multiples([4, 3]) == [12]
+  end
+
+  test "that double_counted_multiples returns products of three multiples" do
+    assert MultipleSummer.double_counted_multiples([3, 4, 5]) == [12, 15, 20]
   end
 
 end

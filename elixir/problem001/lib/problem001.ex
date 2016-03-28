@@ -40,4 +40,14 @@ defmodule MultipleSummer do
     divisors = for d <- list, rem(n, d) == 0 and n != d, do: d
     divisors  != []
   end
+
+  def double_counted_multiples(multiples) do
+      # assumes that multiples has no duplicates.
+      for a <- multiples,
+          b <- multiples,
+          # this could also be >, it just ensures the same two numbers aren't
+          # multiplied twice, and that a number isn't multiplied by itself.
+          a < b,
+          do: a * b
+  end
 end
