@@ -12,8 +12,13 @@ defmodule MultipleSummer do
     # remove any numbers that are multiples of a smaller number since any
     # multiple of the larger number is also a multiple of the smaller number
     multiples = remove_inter_multiples(multiples)
+    # produce a list of total for each multiple
     totals = for n <- multiples, do: sum_of_single_multiple(n, limit)
-    Enum.sum(totals)
+    # produce a list of double-counted multiples that will be subtracted out
+    double_counts = double_counted_multiples(multiples)
+    double_totals = for n <- double_counts, do: sum_of_single_multiple(n, limit)
+    # add the totals, and subtract the double counted totals
+    Enum.sum(totals) - Enum.sum(double_totals)
   end
 
   def sum_of_single_multiple(n, limit) do

@@ -19,6 +19,10 @@ defmodule Problem001Test do
     assert MultipleSummer.sum_multiples([3, 4], 5) == 7
   end
 
+  test "that sum_multiples gives correct sum for two numbers" do
+    assert MultipleSummer.sum_multiples([3, 4], 15) == 42
+  end
+
   # sum_of_single_multiple tests
 
   test "that sum_of_multiples returns 12 for multiples of 3 under 10" do
