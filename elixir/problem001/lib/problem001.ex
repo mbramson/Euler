@@ -6,7 +6,7 @@
 
 defmodule MultipleSummer do
 
-  def sum_of_multiples(multiples, limit) do
+  def sum_multiples(multiples, limit) do
     # remove duplicates in the multiples list
     multiples = remove_duplicates_in(multiples)
     # remove any numbers that are multiples of a smaller number since any

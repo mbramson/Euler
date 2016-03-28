@@ -3,16 +3,20 @@ defmodule Problem001Test do
   doctest MultipleSummer
 
   # sum_of_multiples tests
-  test "that sum_of_multiples gives correct sum for single item list" do
-    assert MultipleSummer.sum_of_multiples([3], 10) == 18
+  test "that sum_multiples gives correct sum for single item list" do
+    assert MultipleSummer.sum_multiples([3], 10) == 18
   end
 
-  test "that sum_of_multiples gives correct sum for two identical items" do
-    assert MultipleSummer.sum_of_multiples([5, 5], 20) == 30
+  test "that sum_multiples gives correct sum for two identical items" do
+    assert MultipleSummer.sum_multiples([5, 5], 20) == 30
   end
 
-  test "that sum_of_multiples give correct sum when multiples of each other" do
-    assert MultipleSummer.sum_of_multiples([2, 4], 10) == 20 
+  test "that sum_multiples gives correct sum when multiples of each other" do
+    assert MultipleSummer.sum_multiples([2, 4], 10) == 20
+  end
+
+  test "that sum_multiples gives correct sum for two numbers with low limit" do
+    assert MultipleSummer.sum_multiples([3, 4], 5) == 7 
   end
 
   # sum_of_single_multiple tests
