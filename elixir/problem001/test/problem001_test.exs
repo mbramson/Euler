@@ -23,6 +23,17 @@ defmodule Problem001Test do
     assert MultipleSummer.sum_multiples([3, 4], 15) == 42
   end
 
+  test "that sum_multiples gives sum for three numbers with low limit" do
+    assert MultipleSummer.sum_multiples([3, 4, 5], 20) == 106
+  end
+
+  @tag :skip
+  test "that sum_multiples gives sum for three numbers with high limit" do
+    # 61 because this is right above the product of 3, 4, and 5. This tests
+    # for issue properly dealing with double-counted multiples
+    assert MultipleSummer.sum_multiples([3, 4, 5], 61) == 1110
+  end
+
   # sum_of_single_multiple tests
 
   test "that sum_of_multiples returns 12 for multiples of 3 under 10" do
