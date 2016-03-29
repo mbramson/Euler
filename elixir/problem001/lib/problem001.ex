@@ -14,11 +14,11 @@ defmodule MultipleSummer do
     multiples = remove_inter_multiples(multiples)
     # produce a list of total for each multiple
     totals = for n <- multiples, do: sum_of_single_multiple(n, limit)
-    # produce a list of double-counted multiples that will be subtracted out
-    double_counts = double_counted_multiples(multiples)
-    double_totals = for n <- double_counts, do: sum_of_single_multiple(n, limit)
-    # add the totals, and subtract the double counted totals
-    Enum.sum(totals) - Enum.sum(double_totals)
+    # produce a list of multiples that will be subtracted out
+    subtractors = get_subtractors(multiples)
+    subtractors_totals = for n <- subtractors, do: sum_of_single_multiple(n, limit)
+    # add the totals, and subtract the double counted subtractor totals
+    Enum.sum(totals) - Enum.sum(subtractors_totals)
   end
 
   def sum_of_single_multiple(n, limit) do
@@ -46,7 +46,7 @@ defmodule MultipleSummer do
     divisors  != []
   end
 
-  def double_counted_multiples(multiples) do
+  def get_subtractors(multiples) do
       # assumes that multiples has no duplicates.
       for a <- multiples,
           b <- multiples,
