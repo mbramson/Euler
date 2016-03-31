@@ -109,7 +109,35 @@ defmodule Problem001Test do
   end
 
   test "that subtractors returns products of three multiples" do
+    # subtractors must include 60 as multiples of 3 * 4 * 5 will also be
+    # double counted
     assert get_subtractors([3, 4, 5]) == [12, 15, 20]
   end
+
+  #get_all_subtractors tests
+  test "that get_all_subtractors returns [] for empty list" do
+    assert get_all_subtractors([]) == []
+  end
+
+  test "that get_all_subtractors returns [] for single element list" do
+    assert get_all_subtractors([1]) == []
+  end
+
+  test "that get_all_subtractors returns products of three multiples and of all" do
+    assert get_all_subtractors([3, 4, 5]) == [12, 15, 20, 60]
+  end
+
+# product tests
+test "that product returns same number for [1]" do
+  assert product([1]) == 1
+end
+
+test "that product returns product for [2,3]" do
+  assert product([2, 3]) == 6
+end
+
+test "that product returns total product for [2, 3, 4]" do
+  assert product([2, 3, 4]) == 24
+end
 
 end

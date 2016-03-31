@@ -55,4 +55,15 @@ defmodule MultipleSummer do
           a < b,
           do: a * b
   end
+
+  def get_all_subtractors(multiples) when length(multiples) <= 1, do: []
+
+  def get_all_subtractors(multiples) when is_list(multiples) do
+    product(multiples)
+    # assumption: multiples has no duplicates
+  end
+
+  def product(list) when is_list(list) do
+      Enum.reduce(list, fn x,acc -> x * acc end)
+  end
 end
