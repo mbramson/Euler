@@ -124,7 +124,7 @@ defmodule Problem001Test do
   end
 
   test "that get_all_subtractors returns products of three multiples and of all" do
-    assert get_all_subtractors([3, 4, 5]) == [12, 15, 20, 60]
+    assert get_all_subtractors([3, 4, 5]) == [60, 20, 15, 12]
   end
 
 # product tests

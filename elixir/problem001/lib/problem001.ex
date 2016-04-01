@@ -43,7 +43,7 @@ defmodule MultipleSummer do
   def has_divisor_in?(n, list) do
     # filter list for only perfect divisors that aren't equal to n
     divisors = for d <- list, rem(n, d) == 0 and n != d, do: d
-    divisors  != []
+    divisors != []
   end
 
   def get_subtractors(multiples) do
@@ -59,7 +59,10 @@ defmodule MultipleSummer do
   def get_all_subtractors(multiples) when length(multiples) <= 1, do: []
 
   def get_all_subtractors(multiples) when is_list(multiples) do
-    product(multiples)
+    cond do
+      length(multiples) == 2 -> product(multiples)
+      true -> [product(multiples)] ++ for n <- multiples, do: get_all_subtractors(List.delete(multiples, n))
+    end
     # assumption: multiples has no duplicates
   end
 
