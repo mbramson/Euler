@@ -58,11 +58,11 @@ defmodule MultipleSummer do
 
   def get_all_subtractors(multiples) when length(multiples) <= 1, do: []
 
+  def get_all_subtractors(multiples) when length(multiples) == 2, do: product(multiples)
+
   def get_all_subtractors(multiples) when is_list(multiples) do
-    cond do
-      length(multiples) == 2 -> product(multiples)
-      true -> [product(multiples)] ++ for n <- multiples, do: get_all_subtractors(List.delete(multiples, n))
-    end
+      [product(multiples)] ++ for n <- multiples,
+                              do: get_all_subtractors(List.delete(multiples, n))
     # assumption: multiples has no duplicates
   end
 
