@@ -4,7 +4,7 @@ defmodule Problem001Test do
   use ExUnit.Case, async: true
   doctest MultipleSummer
 
-  # sum_of_multiples tests
+  # sum_multiples tests
   test "that sum_multiples gives correct sum for single item list" do
     assert sum_multiples([3], 10) == 18
   end
@@ -100,31 +100,20 @@ defmodule Problem001Test do
 
   # get_subtractors tests
 
-  test "that subtractors returns [] when given single item list" do
-    assert get_subtractors([3]) == []
+  test "that get_all_subtractors returns [] for empty list" do
+    assert get_subtractors([]) == []
+  end
+
+  test "that get_all_subtractors returns [] for single element list" do
+    assert get_subtractors([1]) == []
   end
 
   test "that subtractors returns product of two multiples" do
     assert get_subtractors([4, 3]) == [12]
   end
 
-  test "that subtractors returns products of three multiples" do
-    # subtractors must include 60 as multiples of 3 * 4 * 5 will also be
-    # double counted
-    assert get_subtractors([3, 4, 5]) == [12, 15, 20]
-  end
-
-  #get_all_subtractors tests
-  test "that get_all_subtractors returns [] for empty list" do
-    assert get_all_subtractors([]) == []
-  end
-
-  test "that get_all_subtractors returns [] for single element list" do
-    assert get_all_subtractors([1]) == []
-  end
-
   test "that get_all_subtractors returns products of three multiples and of all" do
-    assert get_all_subtractors([3, 4, 5]) == [60, 20, 15, 12]
+    assert get_subtractors([3, 4, 5]) == [60, 20, 15, 12]
   end
 
 # product tests

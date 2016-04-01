@@ -46,24 +46,16 @@ defmodule MultipleSummer do
     divisors != []
   end
 
-  def get_subtractors(multiples) do
-      # assumes that multiples has no duplicates.
-      for a <- multiples,
-          b <- multiples,
-          # this could also be >, it just ensures the same two numbers aren't
-          # multiplied twice, and that a number isn't multiplied by itself.
-          a < b,
-          do: a * b
-  end
+  def get_subtractors(multiples) when length(multiples) <= 1, do: []
 
-  def get_all_subtractors(multiples) when length(multiples) <= 1, do: []
+  def get_subtractors(multiples) when length(multiples) == 2, do: [product(multiples)]
 
-  def get_all_subtractors(multiples) when length(multiples) == 2, do: product(multiples)
-
-  def get_all_subtractors(multiples) when is_list(multiples) do
-      [product(multiples)] ++ for n <- multiples,
-                              do: get_all_subtractors(List.delete(multiples, n))
-    # assumption: multiples has no duplicates
+  def get_subtractors(multiples) when is_list(multiples) do
+    # assume that there are no duplicates
+    [product(multiples)] ++ List.flatten(
+                              for n <- multiples,
+                              do: get_subtractors(List.delete(multiples, n))
+                            )
   end
 
   def product(list) when is_list(list) do
