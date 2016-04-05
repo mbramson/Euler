@@ -41,9 +41,7 @@ defmodule MultipleSummer do
   end
 
   def has_divisor_in?(n, list) do
-    # filter list for only perfect divisors that aren't equal to n
-    divisors = for d <- list, rem(n, d) == 0 and n != d, do: d
-    divisors != []
+    Enum.any?(list, fn(x) -> rem(n, x) == 0 and n != x end)
   end
 
   def get_subtractors(multiples) when length(multiples) <= 1, do: []
