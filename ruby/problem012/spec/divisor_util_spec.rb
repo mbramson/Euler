@@ -32,4 +32,32 @@ describe DivisorUtil do
 
   end
 
+  describe '#divisor_count_of' do
+
+    it 'returns 1 for 1' do
+      expect(util.divisor_count_of 1 ).to be 1
+    end
+
+    it 'returns 2 for 2' do
+      expect(util.divisor_count_of 2 ).to be 2
+    end
+
+    it 'returns 3 for 6' do
+      expect(util.divisor_count_of 6 ).to be 3
+    end
+
+    it 'returns 0 for 0' do
+      expect(util.divisor_count_of 0 ).to be 0
+    end
+
+    it 'returns 0 for negative input' do
+      expect(util.divisor_count_of -10 ).to be 0
+    end
+
+    it 'returns 0 for decimal values' do
+      expect(util.divisor_count_of 33.3 ).to be 0
+    end
+
+  end
+
 end

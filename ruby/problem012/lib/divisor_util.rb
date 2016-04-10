@@ -11,4 +11,8 @@ class DivisorUtil
     divisors
   end
 
+  def divisor_count_of(n)
+    divisors_of(n).length
+  end
+
 end
