@@ -2,9 +2,9 @@ require 'divisor_util'
 
 describe DivisorUtil do
 
-  subject(:util) { DivisorUtil.new }
+  subject(:util) { DivisorUtil }
 
-  describe '#divisors_of' do
+  describe '.divisors_of' do
 
     it 'returns [1] for 1' do
       expect(util.divisors_of 1 ).to eq [1]

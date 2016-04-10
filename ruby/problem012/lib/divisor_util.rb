@@ -1,6 +1,6 @@
 class DivisorUtil
 
-  def divisors_of(n)
+  def self.divisors_of(n)
     return [] if n <= 0
     divisors = []
     for i in 1..(n/2+1) do
@@ -11,7 +11,7 @@ class DivisorUtil
     divisors
   end
 
-  def divisor_count_of(n)
+  def self.divisor_count_of(n)
     divisors_of(n).length
   end
 

@@ -1,6 +1,6 @@
 class TriangularNumberUtil
 
-  def get_number(index)
+  def self.get_number(index)
     if index < 0
       0
     else
