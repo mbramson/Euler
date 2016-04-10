@@ -24,7 +24,6 @@ describe TriangularNumberUtil do
     it 'returns 0 if given a negative index' do
       expect(util.get_number(-5)). to be(0)
     end
-
   end
 
 end
