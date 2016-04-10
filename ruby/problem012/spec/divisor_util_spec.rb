@@ -15,7 +15,7 @@ describe DivisorUtil do
     end
 
     it 'returns [1,2,3] for 6' do
-      expect(util.divisors_of 6 ).to eq [1,2,3]
+      expect(util.divisors_of 6 ).to eq [1,2,3,6]
     end
 
     it 'returns [] for 0' do
@@ -43,7 +43,7 @@ describe DivisorUtil do
     end
 
     it 'returns 3 for 6' do
-      expect(util.divisor_count_of 6 ).to be 3
+      expect(util.divisor_count_of 6 ).to be 4
     end
 
     it 'returns 0 for 0' do

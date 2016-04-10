@@ -3,7 +3,7 @@ class DivisorUtil
   def self.divisors_of(n)
     return [] if n <= 0
     divisors = []
-    for i in 1..(n/2+1) do
+    for i in 1..n do
       if n%i == 0
         divisors.push(i)
       end
