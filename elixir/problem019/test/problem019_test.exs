@@ -58,6 +58,14 @@ defmodule Problem019Test do
     assert days_in(:december, 2000) == 31
   end
 
+  test "days_in is 365 on a non-leap-year" do
+    assert days_in(2435) == 365
+  end
+
+  test "days_in is 366 on a leap year" do
+    assert days_in(2016) == 366
+  end
+
   # leap_year? tests
 
   test "leap_year? is true in 2012" do

@@ -17,11 +17,17 @@ defmodule Problem019 do
     end
   end
 
+  def days_in(year) do
+    case leap_year?(year) do
+      false -> 365
+      _     -> 366
+    end
+  end
+
   defp days_in_february(year) do
-    if leap_year?(year) do
-      29
-    else
-      28
+    case leap_year?(year) do
+      false -> 28
+      _     -> 29
     end
   end
 
