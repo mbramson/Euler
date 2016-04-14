@@ -4,6 +4,51 @@ defmodule Problem019Test do
   use ExUnit.Case, async: true
   doctest Problem019
 
+  # day_diff tests
+
+  test "day_diff is 0 between a day and itself" do
+    assert day_diff(%{year: 1900, month: 1, day: 1},
+                    %{year: 1900, month: 1, day: 1})
+      == 0
+  end
+
+  test "day_diff is 1 between a day and the next one" do
+    assert day_diff(%{year: 1900, month: 1, day: 1},
+                    %{year: 1900, month: 1, day: 2})
+      == 1
+  end
+
+  test "day_diff is -1 between a day and the previous one" do
+    assert day_diff(%{year: 1900, month: 1, day: 9},
+                    %{year: 1900, month: 1, day: 8})
+      == -1
+  end
+
+  test "day_diff is 1 across the end of a month" do
+    assert day_diff(%{year: 1900, month: 3, day: 31},
+                    %{year: 1900, month: 4, day: 1})
+      == 1
+  end
+
+  test "day_diff is 1 between feb 28 and march 1 on non-leap-year" do
+    assert day_diff(%{year: 1900, month: 2, day: 28},
+                    %{year: 1900, month: 3, day: 1})
+      == 1
+  end
+
+  test "day_diff is 2 between feb 28 and march 1 on leap-year" do
+    assert day_diff(%{year: 2004, month: 2, day: 28},
+                    %{year: 2004, month: 3, day: 1})
+      == 2
+  end
+
+  test "day_diff is 1 between feb 29 and march 1 on leap-year" do
+    assert day_diff(%{year: 2004, month: 2, day: 29},
+                    %{year: 2004, month: 3, day: 1})
+      == 1
+
+  end
+
   # days_in tests
 
   test "days_in is 31 in January" do
