@@ -1,23 +1,15 @@
 defmodule Problem019 do
 
-  def days_in(month, year) when is_atom(month) do
-    case month do
-      :january -> 31
-      :february -> days_in_february(year)
-      :march -> 31
-      :april -> 30
-      :may -> 31
-      :june -> 30
-      :july -> 31
-      :august -> 31
-      :september -> 30
-      :october -> 31
-      :november -> 30
-      :december -> 31
+  def days_in(%{year: year, month: month}) do
+    cond do
+      month in [1,3,5,7,8,10,12] -> 31
+      month in [4,6,9,11] -> 30
+      month == 2 -> days_in_february(year)
+      true -> nil
     end
   end
 
-  def days_in(year) do
+  def days_in(%{year: year}) do
     case leap_year?(year) do
       false -> 365
       _     -> 366
