@@ -11,7 +11,8 @@ defmodule Problem019 do
     days_left_in_first_month =
       days_in(%{year: same_year, month: first_month}) - first_day
 
-    days_in_months_between_first_and_second = 0 # TODO: Implement
+    days_in_months_between_first_and_second =
+      days_in_months_between(first_month, second_month, same_year)
 
     days_in_last_month = second_day
 
@@ -25,6 +26,14 @@ defmodule Problem019 do
                %{year: second_year, month: second_month, day: second_day}) do
     nil # TODO: Implement
   end
+
+  def days_in_months_between(first_month, second_month, year)
+        when second_month > first_month + 1 do
+    Enum.reduce(first_month+1..second_month-1, 0,
+                fn month, acc -> acc + days_in(%{year: year, month: month}) end)
+  end
+
+  def days_in_months_between(first_month, second_month, year), do: 0
 
   def days_in(%{year: year, month: month}) do
     cond do

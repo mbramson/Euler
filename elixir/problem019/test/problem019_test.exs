@@ -46,7 +46,34 @@ defmodule Problem019Test do
     assert day_diff(%{year: 2004, month: 2, day: 29},
                     %{year: 2004, month: 3, day: 1})
       == 1
+  end
 
+  test "day_diff is 31 between March 31 and May 1" do
+    assert day_diff(%{year: 2000, month: 3, day: 31},
+                    %{year: 2000, month: 5, day: 1})
+      == 31
+  end
+
+  # days_in_months_between tests
+
+  test "days_in_months_between is total days in May for months 4 and 6" do
+    assert days_in_months_between(4, 6, 2000) == 31
+  end
+
+  test "days_in_months_between sums across two months" do
+    assert days_in_months_between(5, 8, 2000) == 61
+  end
+
+  test "days_in_months_between is 29 when summing february on leap years" do
+    assert days_in_months_between(1, 3, 2000) == 29
+  end
+
+  test "days_in_months_between is 28 when summing february on non-leap-years" do
+    assert days_in_months_between(1, 3, 1998) == 28
+  end
+
+  test "days_in_months_between is 0 when months are one apart" do
+    assert days_in_months_between(1, 2, 1998) == 0
   end
 
   # days_in tests
