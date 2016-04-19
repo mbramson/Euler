@@ -6,6 +6,8 @@ defmodule Problem019Test do
 
   # day_diff tests
 
+  # same month and year
+
   test "day_diff is 0 between a day and itself" do
     assert day_diff(%{year: 1900, month: 1, day: 1},
                     %{year: 1900, month: 1, day: 1})
@@ -23,6 +25,8 @@ defmodule Problem019Test do
                     %{year: 1900, month: 1, day: 8})
       == -1
   end
+
+  # same year
 
   test "day_diff is 1 across the end of a month" do
     assert day_diff(%{year: 1900, month: 3, day: 31},
@@ -52,6 +56,38 @@ defmodule Problem019Test do
     assert day_diff(%{year: 2000, month: 3, day: 31},
                     %{year: 2000, month: 5, day: 1})
       == 31
+  end
+
+  # different years
+
+  test "day_diff is 1 across sequential years between dec 31 and jan 1" do
+    assert day_diff(%{year: 1999, month: 12, day: 31},
+                    %{year: 2000, month: 1, day: 1})
+      == 1
+  end
+
+  test "day_diff is 32 across sequential years between dec 31 and feb 1" do
+    assert day_diff(%{year: 1999, month: 12, day: 31},
+                    %{year: 2000, month: 2, day: 1})
+      == 32
+  end
+
+  test "day_diff is 42 across sequential years between nov 20 and jan 1" do
+    assert day_diff(%{year: 1999, month: 11, day: 20},
+                    %{year: 2000, month: 1, day: 1})
+      == 42
+  end
+
+  test "day_diff is 61 across sequential years between dec 31 and mar 1 on leap year" do
+    assert day_diff(%{year: 1999, month: 12, day: 31},
+                    %{year: 2000, month: 3, day: 1})
+      == 61
+  end
+
+  test "day_diff is 60 across sequential years between dec 31 and mar 1 on non-leap year" do
+    assert day_diff(%{year: 2001, month: 12, day: 31},
+                    %{year: 2002, month: 3, day: 1})
+      == 60
   end
 
   # days_in_months_between tests
