@@ -80,6 +80,23 @@ defmodule Problem019 do
   def days_in_months_between(first_month, second_month, year), do: 0
 
   @doc """
+  Returns the number of days in the years between the first_year and the
+  second_year parameters. Takes into account leap years.
+
+  Example: days_in_years_between(1999, 2002) will return:
+    number of days in 2000 (366) +
+    number of days in 2001 (365)
+    = 731.
+  """
+  def days_in_years_between(first_year, second_year)
+        when second_year > first_year + 1 do
+    Enum.reduce(first_year+1..second_year-1, 0,
+                fn year, acc -> acc + days_in(%{year: year}) end)
+  end
+
+  def days_in_years_between(first_year, second_year), do: 0
+
+  @doc """
   Returns the number days in the given month on the given year.
   """
   def days_in(%{year: year, month: month}) do

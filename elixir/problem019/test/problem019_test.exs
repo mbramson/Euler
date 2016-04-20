@@ -90,6 +90,13 @@ defmodule Problem019Test do
       == 60
   end
 
+  @tag :skip
+  test "day_diff is 366 across three years between dec 31 and jan 1 for non-leap year" do
+    assert day_diff(%{year: 2001, month: 12, day: 31},
+                    %{year: 2003, month: 1, day: 1})
+      == 366
+  end
+
   # days_in_months_between tests
 
   test "days_in_months_between is total days in May for months 4 and 6" do
@@ -110,6 +117,24 @@ defmodule Problem019Test do
 
   test "days_in_months_between is 0 when months are one apart" do
     assert days_in_months_between(1, 2, 1998) == 0
+  end
+
+  # days_in_years_between tests
+
+  test "days_in_years_between is 0 for adjacent years" do
+    assert days_in_years_between(2000,2001) == 0
+  end
+
+  test "days_in_years_between is 365 when one non-leap-year between years" do
+    assert days_in_years_between(2000,2002) == 365
+  end
+
+  test "days_in_years_between is 366 when one leap-year is between years" do
+    assert days_in_years_between(1999,2001) == 366
+  end
+
+  test "days_in_years_between is 731 for two years one of which is leap" do
+    assert days_in_years_between(1999,2002) == 731
   end
 
   # days_in tests
