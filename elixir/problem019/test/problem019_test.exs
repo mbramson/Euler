@@ -90,11 +90,16 @@ defmodule Problem019Test do
       == 60
   end
 
-  @tag :skip
   test "day_diff is 366 across three years between dec 31 and jan 1 for non-leap year" do
     assert day_diff(%{year: 2001, month: 12, day: 31},
                     %{year: 2003, month: 1, day: 1})
       == 366
+  end
+
+  test "day_diff is 367 across three years between dec 31 and jan 1 for leap year" do
+    assert day_diff(%{year: 1999, month: 12, day: 31},
+                    %{year: 2001, month: 1, day: 1})
+      == 367
   end
 
   # days_in_months_between tests

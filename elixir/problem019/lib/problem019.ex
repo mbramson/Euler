@@ -47,7 +47,8 @@ defmodule Problem019 do
     days_left_in_first_year =
       days_in_months_between(first_month, 13, first_year)
 
-    days_in_years_between_first_and_second = 0
+    days_in_years_between_first_and_second =
+      days_in_years_between(first_year, second_year)
 
     days_in_last_year_before_last_month =
       days_in_months_between(0, second_month, second_year)
