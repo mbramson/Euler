@@ -102,6 +102,12 @@ defmodule Problem019Test do
       == 367
   end
 
+  test "day_diff is  across four years between nov 1 and mar 1 with no leap year" do
+    assert day_diff(%{year: 2000, month: 11, day: 1},
+                    %{year: 2003, month: 3, day: 1})
+      == 850
+  end
+
   # days_in_months_between tests
 
   test "days_in_months_between is total days in May for months 4 and 6" do
