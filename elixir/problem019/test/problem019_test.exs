@@ -4,6 +4,36 @@ defmodule Problem019Test do
   use ExUnit.Case, async: true
   doctest Problem019
 
+  # day_of_week tests
+
+  test "day_of_week is Monday Jan 1 1900" do
+    assert day_of_week(%{year: 1900, month: 1, day: 1}) == :monday
+  end
+
+  test "day_of_week is Tuesday on Jan 2 1900" do
+    assert day_of_week(%{year: 1900, month: 1, day: 2}) == :tuesday
+  end
+
+  test "day_of_week is Wednesday on Jan 10 1900" do
+    assert day_of_week(%{year: 1900, month: 1, day: 10}) == :wednesday
+  end
+
+  test "day_of_week is Thursday on Feb 15 1900" do
+    assert day_of_week(%{year: 1900, month: 2, day: 15}) == :thursday
+  end
+
+  test "day_of_week is Friday on July 19 1901" do
+    assert day_of_week(%{year: 1901, month: 7, day: 19}) == :friday
+  end
+
+  test "day_of_week is Satuday on March 5 1904" do
+    assert day_of_week(%{year: 1904, month: 3, day: 5}) == :saturday
+  end
+
+  test "day_of_week is Sunday on April 24 2016" do
+    assert day_of_week(%{year: 2016, month: 4, day: 24}) == :sunday
+  end
+
   # day_diff tests
 
   # same month and year
@@ -263,7 +293,7 @@ defmodule Problem019Test do
     refute leap_year? 1995
   end
 
-  test "leap_year? is true in 2000" do
+  test "leap_year? is false in 2000" do
     assert leap_year? 2000
   end
 

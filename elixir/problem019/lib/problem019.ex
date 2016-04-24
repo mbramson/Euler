@@ -1,6 +1,24 @@
 defmodule Problem019 do
 
 
+  def day_of_week(date = %{year: _, month: _, day: _}) do
+    days_since_reference =
+      day_diff(%{year: 1900, month: 1, day: 1}, date)
+
+    day_modulus = rem(days_since_reference, 7)
+
+    case day_modulus do
+      0 -> :monday
+      1 -> :tuesday
+      2 -> :wednesday
+      3 -> :thursday
+      4 -> :friday
+      5 -> :saturday
+      6 -> :sunday
+      _ -> raise "day_of_week :: unhandled day modulus"
+    end
+  end
+
   @doc """
   Returns the numerical difference between the first day and the second day of
   the same month and year. In the case that first_day = second_day this
@@ -71,7 +89,7 @@ defmodule Problem019 do
                 fn month, acc -> acc + days_in(%{year: year, month: month}) end)
   end
 
-  def days_in_months_between(first_month, second_month, year), do: 0
+  def days_in_months_between(_first_month, _second_month, _year), do: 0
 
   @doc """
   Returns the number of days in the years between the first_year and the
@@ -88,7 +106,7 @@ defmodule Problem019 do
                 fn year, acc -> acc + days_in(%{year: year}) end)
   end
 
-  def days_in_years_between(first_year, second_year), do: 0
+  def days_in_years_between(_first_year, _second_year), do: 0
 
   @doc """
   Returns the number of days left in the year after the date passed in.
