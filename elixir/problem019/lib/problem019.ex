@@ -41,11 +41,8 @@ defmodule Problem019 do
   """
   def day_diff(%{year: first_year,  month: first_month,  day: first_day},
                %{year: second_year, month: second_month, day: second_day}) do
-    days_in_first_month =
-      days_in(%{year: first_year, month: first_month}) - first_day
-
     days_left_in_first_year =
-      days_in_months_between(first_month, 13, first_year)
+      days_left_in_year(%{year: first_year, month: first_month, day: first_day})
 
     days_in_years_between_first_and_second =
       days_in_years_between(first_year, second_year)
@@ -55,7 +52,6 @@ defmodule Problem019 do
 
     days_in_last_month = second_day
 
-    days_in_first_month +
     days_left_in_first_year +
     days_in_years_between_first_and_second +
     days_in_last_year_before_last_month +
