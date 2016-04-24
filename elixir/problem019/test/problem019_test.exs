@@ -148,6 +148,28 @@ defmodule Problem019Test do
     assert days_in_years_between(1999,2002) == 731
   end
 
+  # days_left_in_year tests
+
+  test "days_left_in_year is 0 on Dec 31" do
+    assert days_left_in_year(%{year: 2000, month: 12, day: 31}) == 0
+  end
+
+  test "days_left_in_year is 10 on Dec 21" do
+    assert days_left_in_year(%{year: 2000, month: 12, day: 21}) == 10
+  end
+
+  test "days_left_in_year is 71 on Oct 21" do
+    assert days_left_in_year(%{year: 2000, month: 10, day: 21}) == 71
+  end
+
+  test "days_left_in_year is 364 on Jan 1 of non-leap year" do
+    assert days_left_in_year(%{year: 2001, month: 1, day: 1}) == 364
+  end
+
+  test "days_left_in_year is 365 on Jan 1 of leap year" do
+    assert days_left_in_year(%{year: 2000, month: 1, day: 1}) == 365
+  end
+
   # days_in tests
 
   test "days_in is 31 in January" do

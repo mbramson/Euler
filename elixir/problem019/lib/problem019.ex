@@ -98,6 +98,19 @@ defmodule Problem019 do
   def days_in_years_between(first_year, second_year), do: 0
 
   @doc """
+  Returns the number of days left in the year after the date passed in.
+  """
+  def days_left_in_year(%{year: year, month: month, day: day}) do
+    days_left_in_month =
+      days_in(%{year: year, month: month}) - day
+
+    days_left_in_year_after_first_month =
+      days_in_months_between(month, 13, year)
+
+    days_left_in_month + days_left_in_year_after_first_month
+  end
+
+  @doc """
   Returns the number days in the given month on the given year.
   """
   def days_in(%{year: year, month: month}) do
