@@ -170,6 +170,27 @@ defmodule Problem019Test do
     assert days_left_in_year(%{year: 2000, month: 1, day: 1}) == 365
   end
 
+  # days_until_date tests
+  test "days_until_date is 1 on Jan 1" do
+    assert days_until_date(%{year: 2000, month: 1, day: 1}) == 1
+  end
+
+  test "days_until_date is 10 on Jan 10" do
+    assert days_until_date(%{year: 2000, month: 1, day: 10}) == 10
+  end
+
+  test "days_until_date is 32 on Feb 1" do
+    assert days_until_date(%{year: 2000, month: 2, day: 1}) == 32
+  end
+
+  test "days_until_date is 365 on Dec 31 of non-leap year" do
+    assert days_until_date(%{year: 2001, month: 12, day: 31}) == 365
+  end
+
+  test "days_until_date is 366 on Dec 31 of leap year" do
+    assert days_until_date(%{year: 2000, month: 12, day: 31}) == 366
+  end
+
   # days_in tests
 
   test "days_in is 31 in January" do

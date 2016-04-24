@@ -95,6 +95,7 @@ defmodule Problem019 do
 
   @doc """
   Returns the number of days left in the year after the date passed in.
+  Does not include the date passed in. So Dec 31 returns 0 days.
   """
   def days_left_in_year(%{year: year, month: month, day: day}) do
     days_left_in_month =
@@ -104,6 +105,19 @@ defmodule Problem019 do
       days_in_months_between(month, 13, year)
 
     days_left_in_month + days_left_in_year_after_first_month
+  end
+
+  @doc """
+  Returns the number of days from the beginning of the year until the date
+  passed in. Includes the date passed in, so passing in Jan 1 returns 1 day.
+  """
+  def days_until_date(%{year: year, month: month, day: day}) do
+    days_in_last_year_before_last_month =
+      days_in_months_between(0, month, year)
+
+    days_in_last_month = day
+
+    days_in_last_year_before_last_month + days_in_last_month
   end
 
   @doc """
