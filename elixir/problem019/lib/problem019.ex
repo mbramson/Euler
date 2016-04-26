@@ -10,9 +10,9 @@ defmodule Date do
   defstruct [year: 1900, month: 1, day: 1]
 
   def new(date = %Date{}),
-    do: date
+    do: date |> validate
   def new(year, month, day),
-    do: %Date{year: year, month: month, day: day}
+    do: %Date{year: year, month: month, day: day} |> validate
 
   @doc """
   validates a map that contains year, month, and day keys to ensure that it is a

@@ -10,6 +10,18 @@ defmodule Problem019Test do
     %Date{} = new(2002, 3, 5)
   end
 
+  test "new validates passed in %Date{} struct" do
+    assert_raise(
+      RuntimeError,
+      fn -> new(%Date{day: 0}) end )
+  end
+
+  test "new validates date" do
+    assert_raise(
+      RuntimeError,
+      fn -> new(2000, 1, 50) end )
+  end
+
   # validate tests
   test "default date is valid" do
     validate(%Date{})
