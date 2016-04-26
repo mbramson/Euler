@@ -1,8 +1,58 @@
-import Problem019
+import Date
 
 defmodule Problem019Test do
   use ExUnit.Case, async: true
-  doctest Problem019
+  doctest Date
+
+  # new tests
+
+  test "new returns a %Date{} struct" do
+    %Date{} = new(2002, 3, 5)
+  end
+
+  # validate tests
+  test "default date is valid" do
+    validate(%Date{})
+  end
+
+  test "correct date is valid" do
+    validate(%{year: 2013, month: 5, day: 15})
+  end
+
+  test "feb 29 2000 is a valid date" do
+    validate(%{year: 2000, month: 2, day: 29})
+  end
+
+  test "feb 29 2001 is not a valid date" do
+    assert_raise(
+      RuntimeError, "Date :: invalid day :: too large",
+      fn -> validate(%{year: 2001, month: 2, day: 29}) end )
+  end
+
+  test "apr 31 2001 is not a valid date" do
+    assert_raise(
+      RuntimeError, "Date :: invalid day :: too large",
+      fn -> validate(%{year: 2001, month: 4, day: 31}) end )
+  end
+
+  test "0 month is invalid" do
+    assert_raise(
+      RuntimeError, "Date :: invalid month :: too small",
+      fn -> validate(%{year: 2000, month: 0, day: 1}) end )
+  end
+
+  test "13 month is invalid" do
+    assert_raise(
+      RuntimeError, "Date :: invalid month :: too large",
+      fn -> validate(%{year: 2000, month: 13, day: 1}) end )
+  end
+
+  test "0 day is invalid" do
+    assert_raise(
+      RuntimeError, "Date :: invalid day :: too small",
+      fn -> validate(%{year: 2000, month: 10, day: 0}) end )
+
+  end
 
   # day_of_week tests
 

@@ -1,5 +1,32 @@
-defmodule Problem019 do
+defmodule Date do
 
+
+  @type t :: %__MODULE__{
+    year: integer,
+    month: integer,
+    day: integer
+  }
+
+  defstruct [year: 1900, month: 1, day: 1]
+
+  def new(date = %Date{}),
+    do: date
+  def new(year, month, day),
+    do: %Date{year: year, month: month, day: day}
+
+  @doc """
+  validates a map that contains year, month, and day keys to ensure that it is a
+  valid date.
+  """
+  def validate(date = %{year: _year, month: month, day: day}) do
+    cond do
+      month < 1 -> raise "Date :: invalid month :: too small"
+      month > 12 -> raise "Date :: invalid month :: too large"
+      day < 1 -> raise "Date :: invalid day :: too small"
+      day > days_in(date) -> raise "Date :: invalid day :: too large"
+      true -> date
+    end
+  end
 
   def day_of_week(date = %{year: _, month: _, day: _}) do
     days_since_reference =
