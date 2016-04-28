@@ -1,6 +1,14 @@
 defmodule Date do
 
 
+  @type weekday :: :monday |
+                   :tuesday |
+                   :wednesday |
+                   :thursday |
+                   :friday |
+                   :saturday |
+                   :sunday
+
   @type t :: %__MODULE__{
     year: integer,
     month: integer,
@@ -26,6 +34,14 @@ defmodule Date do
       day > days_in(date) -> raise "Date :: invalid day :: too large"
       true -> date
     end
+  end
+
+  def months_in_year_that_start_with(weekday, year) do
+    Enum.count(1..12, fn m -> month_starts_with_day?(weekday, m, year) end)
+  end
+
+  defp month_starts_with_day?(weekday, month, year) do
+    weekday == day_of_week(%{year: year, month: month, day: 1})
   end
 
   def day_of_week(date = %{year: _, month: _, day: _}) do

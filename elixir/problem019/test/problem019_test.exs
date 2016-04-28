@@ -63,7 +63,19 @@ defmodule Problem019Test do
     assert_raise(
       RuntimeError, "Date :: invalid day :: too small",
       fn -> validate(%{year: 2000, month: 10, day: 0}) end )
+  end
 
+  # months_in_year_that_start_with tests
+  test "2 months started with Monday in 1900" do
+    assert months_in_year_that_start_with(:monday, 1900) == 2
+  end
+
+  test "3 months started with Thursday in 1900" do
+    assert months_in_year_that_start_with(:thursday, 1900) == 3
+  end
+
+  test "1 month starts with Saturday in 2000" do
+    assert months_in_year_that_start_with(:sunday, 2000) == 1
   end
 
   # day_of_week tests
