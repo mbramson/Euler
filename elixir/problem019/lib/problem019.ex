@@ -36,7 +36,14 @@ defmodule Date do
     end
   end
 
-  def months_in_year_that_start_with(weekday, year) do
+  def months_in_years_that_start_with(weekday, first_year, second_year) do
+    Enum.reduce(first_year..second_year, 0,
+      fn year, acc ->
+        acc + months_in_years_that_start_with(weekday, year)
+      end)
+  end
+
+  def months_in_years_that_start_with(weekday, year) do
     Enum.count(1..12, fn m -> month_starts_with_day?(weekday, m, year) end)
   end
 

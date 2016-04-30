@@ -66,16 +66,24 @@ defmodule Problem019Test do
   end
 
   # months_in_year_that_start_with tests
+  test "4 months started with Monday between 1900 and 1901" do
+    assert months_in_years_that_start_with(:monday, 1900, 1901) == 4
+  end
+
+  test "9 months started with Tuesday between 1900 and 1904" do
+    assert months_in_years_that_start_with(:tuesday, 1900, 1904) == 9
+  end
+
   test "2 months started with Monday in 1900" do
-    assert months_in_year_that_start_with(:monday, 1900) == 2
+    assert months_in_years_that_start_with(:monday, 1900) == 2
   end
 
   test "3 months started with Thursday in 1900" do
-    assert months_in_year_that_start_with(:thursday, 1900) == 3
+    assert months_in_years_that_start_with(:thursday, 1900) == 3
   end
 
   test "1 month starts with Saturday in 2000" do
-    assert months_in_year_that_start_with(:sunday, 2000) == 1
+    assert months_in_years_that_start_with(:sunday, 2000) == 1
   end
 
   # day_of_week tests
