@@ -17,6 +17,10 @@ defmodule Date do
 
   defstruct [year: 1900, month: 1, day: 1]
 
+  @doc """
+  Creates a new Date Struct and performs validation to guaruntee it is a valid
+  date.
+  """
   def new(date = %Date{}),
     do: date |> validate
   def new(year, month, day),
@@ -36,6 +40,12 @@ defmodule Date do
     end
   end
 
+  @doc """
+  Returns the number of months that start with the given weekday in either
+  the year for months_in_years_that_start_with/2 or in all years starting
+  with the first and ending in the last (inclusive) for
+  months_in_years_that_start_with/3.
+  """
   def months_in_years_that_start_with(weekday, first_year, second_year) do
     Enum.reduce(first_year..second_year, 0,
       fn year, acc ->
@@ -50,7 +60,11 @@ defmodule Date do
   defp month_starts_with_day?(weekday, month, year) do
     weekday == day_of_week(%{year: year, month: month, day: 1})
   end
-
+  
+  @doc """
+  Returns the day of the week of the given date. Uses Jan 1, 1900 being Monday
+  as a reference.
+  """
   def day_of_week(date = %{year: _, month: _, day: _}) do
     days_since_reference =
       day_diff(%{year: 1900, month: 1, day: 1}, date)
