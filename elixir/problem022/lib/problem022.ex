@@ -1,8 +1,10 @@
 defmodule Problem022 do
 
-  @scores %{a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 10, k: 11,
-            l: 12, m: 13, n: 14, o: 15, p: 16, q: 17, r: 18, s: 19, t: 20,
-            u: 21, v: 22, w: 23, x: 24, y: 25, z: 26}
+  @scores %{"a" => 1, "b" => 2, "c" => 3, "d" => 4, "e" => 5, "f" => 6, 
+            "g" => 7, "h" => 8, "i" => 9, "j" => 10, "k" => 11, "l" => 12, 
+            "m" => 13, "n" => 14, "o" => 15, "p" => 16, "q" => 17, "r" => 18, 
+            "s" => 19, "t" => 20, "u" => 21, "v" => 22, "w" => 23, "x" => 24, 
+            "y" => 25, "z" => 26}
 
   @doc """
   Streams in the given file and produces a map for each word in the file where
@@ -32,10 +34,10 @@ defmodule Problem022 do
     |> String.downcase
     |> String.codepoints
     |> Enum.reduce(0, fn letter, acc -> 
-          acc + single_letter_score(String.to_atom(letter)) end)
+          acc + single_letter_score(letter) end)
   end
 
-  defp single_letter_score(letter) when is_atom(letter) do
+  defp single_letter_score(letter) do
     if letter in Map.keys(@scores) do
       @scores[letter]
     else
