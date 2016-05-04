@@ -26,4 +26,8 @@ defmodule Problem022Test do
     assert score_word("cat") == 24
   end
 
+  test "A scores 1" do
+    assert score_word("A") == 1
+  end
+
 end

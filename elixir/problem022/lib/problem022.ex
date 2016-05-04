@@ -29,6 +29,7 @@ defmodule Problem022 do
   """
   def score_word(word) do
     word
+    |> String.downcase
     |> String.codepoints
     |> Enum.reduce(0, fn letter, acc -> 
           acc + single_letter_score(String.to_atom(letter)) end)
