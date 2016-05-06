@@ -4,7 +4,13 @@ defmodule Problem022Test do
   use ExUnit.Case
   doctest Problem022
 
-  # base_score tests
+  # score_line tests
+  
+  test "empty line is an empty list" do
+    assert score_line("") == []
+  end
+
+  # score_word tests
 
   test "empty string scores 0" do
     assert score_word("") == 0

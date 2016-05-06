@@ -23,6 +23,21 @@ defmodule Problem022 do
   end
 
   @doc """
+  Returns a map where keys are the words in a line delimited by whitespace and
+  and punctuation. The values are the name scores of each word before any 
+  modification for word alphabetical order is applied.
+
+  Determines the name score for each word by invokingthe score_word function.
+
+  Example:
+  score_line("the cat, the dog") returns
+  %{"the" => 33, "cat" => 24, "dog" => 26}
+  """
+  def score_line(line) do
+    []
+  end
+
+  @doc """
   Returns the sum of the corresponding alphabet position for each letter in
   the word parameter.
 
