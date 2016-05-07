@@ -33,8 +33,14 @@ defmodule Problem022 do
   score_line("the cat, the dog") returns
   %{"the" => 33, "cat" => 24, "dog" => 26}
   """
+  def score_line(""), do: %{}
   def score_line(line) do
-    []
+    line
+    |> String.split(" ")
+    |> Enum.uniq
+    |> Enum.filter(fn word -> word != "" end)
+    |> Enum.map(fn word -> {word, score_word(word)} end)
+    |> Enum.into(%{})
   end
 
   @doc """

@@ -6,8 +6,28 @@ defmodule Problem022Test do
 
   # score_line tests
   
-  test "empty line is an empty list" do
-    assert score_line("") == []
+  test "empty line is an empty map" do
+    assert score_line("") == %{}
+  end
+
+  test "single letter a generates map with correct structure" do
+    assert score_line("a") == %{"a" => 1}
+  end
+
+  test "two words generate the correct map" do
+    assert score_line("the cat") == %{"the" => 33, "cat" => 24}
+  end
+
+  test "two words deliminated by more than one space is correct" do
+    assert score_line("a   t") == %{"a" => 1, "t" => 20}
+  end
+
+  test "same word twice yields single key map" do
+    assert score_line("elixir elixir") == %{"elixir" => 77}
+  end
+
+  test "three words generate the correct map" do
+    assert score_line("one two three") == %{"one" => 34, "two" => 58, "three" => 56}
   end
 
   # score_word tests
