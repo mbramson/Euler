@@ -5,6 +5,7 @@ defmodule Problem022 do
             "m" => 13, "n" => 14, "o" => 15, "p" => 16, "q" => 17, "r" => 18, 
             "s" => 19, "t" => 20, "u" => 21, "v" => 22, "w" => 23, "x" => 24, 
             "y" => 25, "z" => 26}
+  @letters ~w(a b c d e f g h i j k l m n o p q r s t u v w x y z)
 
   @doc """
   Streams in the given file and produces a map for each word in the file where
@@ -57,13 +58,8 @@ defmodule Problem022 do
     |> Enum.reduce(0, fn letter, acc -> 
           acc + single_letter_score(letter) end)
   end
-
-  defp single_letter_score(letter) do
-    if letter in Map.keys(@scores) do
-      @scores[letter]
-    else
-      0
-    end
-  end
+  
+  defp single_letter_score(letter) when letter in @letters, do: @scores[letter]
+  defp single_letter_score(_letter), do: 0
   
 end
