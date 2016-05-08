@@ -30,6 +30,11 @@ defmodule Problem022Test do
     assert score_line("one two three") == %{"one" => 34, "two" => 58, "three" => 56}
   end
 
+  test "punctuation not included by score_line" do
+    assert score_line(~s("one", 'two'. "three"!?)) == 
+      %{"one" => 34, "two" => 58, "three" => 56}
+  end
+
   # score_word tests
 
   test "empty string scores 0" do

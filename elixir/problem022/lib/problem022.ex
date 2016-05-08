@@ -37,7 +37,7 @@ defmodule Problem022 do
   def score_line(""), do: %{}
   def score_line(line) do
     line
-    |> String.split(" ")
+    |> String.split([" ", ",", "\"", "'", ".", "!", "?"])
     |> Enum.uniq
     |> Enum.filter(fn word -> word != "" end)
     |> Enum.map(fn word -> {word, score_word(word)} end)
