@@ -20,7 +20,17 @@ defmodule Problem022 do
   def process_names(file) do
     File.open!(file)
     |> IO.stream(:line)
-    |> IO.inspect
+    |> Enum.reduce(%{}, &Map.merge/2)
+  end
+
+  @doc """
+  accepts a map of scores for various words and recalculates scores based on
+  the key's position alphabeticaly. The lowest word alphabetically has its
+  score multiplied by 1, while the 5th highest word has its score multiplied
+  by 5, for example.
+  """
+  def score_order(score_map) do
+    score_map
   end
 
   @doc """

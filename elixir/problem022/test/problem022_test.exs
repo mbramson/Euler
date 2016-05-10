@@ -4,6 +4,16 @@ defmodule Problem022Test do
   use ExUnit.Case
   doctest Problem022
 
+  # score_order tests
+  
+  test "does nothing to an empty map" do
+    assert score_order(%{}) == %{}
+  end
+
+  test "only one word has no multiplied applied" do
+    assert score_order(%{"the" => 33}) == %{"the" => 33}
+  end
+
   # score_line tests
   
   test "empty line is an empty map" do
