@@ -28,9 +28,30 @@ defmodule Problem022 do
   the key's position alphabeticaly. The lowest word alphabetically has its
   score multiplied by 1, while the 5th highest word has its score multiplied
   by 5, for example.
+
+  Expects a list with no duplicate keys.
   """
   def score_order(score_map) do
     score_map
+    #|> Map.keys
+    #|> Enum.sort
+    #|> produce_order_map
+    #|> 
+  end
+
+  @doc """
+  Accepts a list of words, and produces a map where the key is the given word
+  and the value is the index of the word in the original list.
+
+  Example: produce_order_map(["b", "a"]) == %{"b" => 1, "a" => 2}
+
+  TODO: Tail Optimize
+  """
+  def produce_order_map(list) when is_list(list), do: produce_order_map(list, 1)
+  defp produce_order_map([], _), do: %{}
+  defp produce_order_map([word|words_left], index) do
+    %{word => index}
+    |> Map.merge(produce_order_map(words_left, index+1))
   end
 
   @doc """

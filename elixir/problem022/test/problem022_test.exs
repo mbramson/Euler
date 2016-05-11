@@ -14,6 +14,25 @@ defmodule Problem022Test do
     assert score_order(%{"the" => 33}) == %{"the" => 33}
   end
 
+  @tag :skip
+  test "two words have correct multipliers applied" do
+    assert score_order(%{"b" => 2, "a" => 1}) == %{"b" => 4, "a" => 1}
+  end
+
+  # produce_order_map tests
+  
+  test "returns empty map for empty list" do
+    assert produce_order_map([]) == %{}
+  end
+
+  test "returns correct map for single element list" do
+    assert produce_order_map(["x"]) == %{"x" => 1}
+  end
+
+  test "returns correct map for two element list" do
+    assert produce_order_map(["b", "a"]) == %{"b" => 1, "a" => 2}
+  end
+
   # score_line tests
   
   test "empty line is an empty map" do
