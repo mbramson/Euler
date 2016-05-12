@@ -19,18 +19,33 @@ defmodule Problem022Test do
     assert score_order(%{"b" => 2, "a" => 1}) == %{"b" => 4, "a" => 1}
   end
 
+  # add_score_map tests
+  
+  test "returns empty list for empty list" do
+    assert add_score_map([]) == []
+  end
+
+  test "adds 1 to the end of the tuple for one entry" do
+    assert add_score_map([{"a", 50}]) == [{"a", 50, 1}]
+  end
+
+  test "adds 1 and 2 to the end of tuples for two entries" do
+    assert add_score_map([{"the", 33}, {"cat", 24}]) ==
+      [{"the", 33, 1}, {"cat", 24, 2}]
+  end
+
   # produce_order_map tests
   
   test "returns empty map for empty list" do
-    assert produce_order_map([]) == %{}
+    assert produce_order_map([]) == []
   end
 
-  test "returns correct map for single element list" do
-    assert produce_order_map(["x"]) == %{"x" => 1}
+  test "returns correct list of tuples for single element list" do
+    assert produce_order_map(["x"]) == [{"x", 1}]
   end
 
-  test "returns correct map for two element list" do
-    assert produce_order_map(["b", "a"]) == %{"b" => 1, "a" => 2}
+  test "returns correct list of tuples for two element list" do
+    assert produce_order_map(["b", "a"]) == [{"b", 1}, {"a", 2}]
   end
 
   # score_line tests

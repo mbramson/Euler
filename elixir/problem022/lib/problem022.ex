@@ -33,25 +33,43 @@ defmodule Problem022 do
   """
   def score_order(score_map) do
     score_map
-    #|> Map.keys
+    #|> Enum.map(fn {k, v} -> {k, v} end)
     #|> Enum.sort
-    #|> produce_order_map
-    #|> 
+    #|> add_score_map
+  end
+
+  @doc """
+  accepts a list of sorted 2-tuples where the first value is the key from the
+  original score map, and the second value is the score associated with the
+  word.
+
+  Adds a value to each tuple which is the order of the word in the passed in
+  list.
+
+  Example: 
+  add_score_map[{"aa", 2}, {"cc", 6}] == [{"aa", 2, 1}, {"cc", 6, 2}
+  """
+  def add_score_map(sorted_score_map) when is_list(sorted_score_map) do
+    sorted_score_map
+    |> Enum.map(fn {k, _v} -> k end)
+    |> produce_order_map
+    |> Enum.zip(sorted_score_map)
+    |> Enum.map(fn {{k, o}, {k, v}} -> {k, v, o} end )
   end
 
   @doc """
   Accepts a list of words, and produces a map where the key is the given word
-  and the value is the index of the word in the original list.
+  and the value is the index of the word in the original list. Does not alter
+  the order of the list.
 
   Example: produce_order_map(["b", "a"]) == %{"b" => 1, "a" => 2}
 
   TODO: Tail Optimize
   """
   def produce_order_map(list) when is_list(list), do: produce_order_map(list, 1)
-  defp produce_order_map([], _), do: %{}
+  defp produce_order_map([], _), do: []
   defp produce_order_map([word|words_left], index) do
-    %{word => index}
-    |> Map.merge(produce_order_map(words_left, index+1))
+    [{word, index}] ++  produce_order_map(words_left, index+1)
   end
 
   @doc """
