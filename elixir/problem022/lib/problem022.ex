@@ -33,9 +33,11 @@ defmodule Problem022 do
   """
   def score_order(score_map) do
     score_map
-    #|> Enum.map(fn {k, v} -> {k, v} end)
-    #|> Enum.sort
-    #|> add_score_map
+    |> Enum.map(fn {k, v} -> {k, v} end)
+    |> Enum.sort
+    |> add_score_map
+    |> Enum.map(fn {k, v, o} -> {k, v * o} end )
+    |> Enum.into(%{})
   end
 
   @doc """

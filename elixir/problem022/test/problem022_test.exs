@@ -14,7 +14,6 @@ defmodule Problem022Test do
     assert score_order(%{"the" => 33}) == %{"the" => 33}
   end
 
-  @tag :skip
   test "two words have correct multipliers applied" do
     assert score_order(%{"b" => 2, "a" => 1}) == %{"b" => 4, "a" => 1}
   end
