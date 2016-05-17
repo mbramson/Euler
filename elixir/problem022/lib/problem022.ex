@@ -20,7 +20,9 @@ defmodule Problem022 do
   def process_names(file) do
     File.open!(file)
     |> IO.stream(:line)
+    |> Stream.map(&score_line/1)
     |> Enum.reduce(%{}, &Map.merge/2)
+    |> score_order
   end
 
   @doc """
