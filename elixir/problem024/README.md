@@ -1,20 +1,7 @@
-# Problem024
+# Problem 24 : Lexicographic Permutations
 
-**TODO: Add description**
+A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations of 0, 1 and 2 are:
 
-## Installation
+012   021   102   120   201   210
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add problem024 to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:problem024, "~> 0.0.1"}]
-        end
-
-  2. Ensure problem024 is started before your application:
-
-        def application do
-          [applications: [:problem024]]
-        end
-
+What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
