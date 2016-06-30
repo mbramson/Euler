@@ -35,5 +35,7 @@ defmodule LexicographicPermutationTest do
     assert generate_order_map(["G", "F"]) == %{"G" => 1, "F" => 2}
   end
 
-
+  test "order map of three element list is correct" do
+    assert generate_order_map(["C", "A", "B"]) == %{"C" => 1, "A" => 2, "B" => 3}
+  end
 end

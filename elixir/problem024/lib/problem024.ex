@@ -24,12 +24,12 @@ defmodule LexicographicPermutation do
   @spec generate_order_map([any()]) :: %{binary() => integer()}
   def generate_order_map(list) when is_list(list) do 
     list
-    |> _generate_order_map(1)
+    |> _generate_order_map(1, [])
     |> Enum.into(%{})
   end
-  defp _generate_order_map([], _), do: []
-  defp _generate_order_map([head|tail], index) do
-    [{head, index}] ++ _generate_order_map(tail, index + 1)
+  defp _generate_order_map([], _, acc), do: acc
+  defp _generate_order_map([head|tail], index, acc) do
+    _generate_order_map(tail, index + 1, acc ++ [{head, index}])
   end
 
 end
