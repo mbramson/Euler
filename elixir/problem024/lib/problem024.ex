@@ -18,8 +18,13 @@ defmodule LexicographicPermutation do
   end
   
   @doc """
-  Generates a map where the keys are the elements of the original list and the
-  values are their order in the original list.
+  Generates a map where the keys are the positions of the elements in the original
+  array and the values are the associated element in the original list.
+
+  ## Example
+  
+      iex> generate_order_map(["A", "B", "C"])
+      %{1 => "A", 2 => "B", 3 => "C"}
   """
   @spec generate_order_map([any()]) :: %{binary() => integer()}
   def generate_order_map(list) when is_list(list) do 
@@ -29,7 +34,7 @@ defmodule LexicographicPermutation do
   end
   defp _generate_order_map([], _, acc), do: acc
   defp _generate_order_map([head|tail], index, acc) do
-    _generate_order_map(tail, index + 1, acc ++ [{head, index}])
+    _generate_order_map(tail, index + 1, acc ++ [{index, head}])
   end
 
 end

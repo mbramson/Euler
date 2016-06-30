@@ -28,14 +28,14 @@ defmodule LexicographicPermutationTest do
   end
 
   test "order map of one element list is correct" do
-    assert generate_order_map(["C"]) == %{"C" => 1}
+    assert generate_order_map(["C"]) == %{1 => "C"}
   end
 
   test "order map of two element list is correct" do
-    assert generate_order_map(["G", "F"]) == %{"G" => 1, "F" => 2}
+    assert generate_order_map(["G", "F"]) == %{1 => "G", 2 => "F"}
   end
 
   test "order map of three element list is correct" do
-    assert generate_order_map(["C", "A", "B"]) == %{"C" => 1, "A" => 2, "B" => 3}
+    assert generate_order_map(["C", "A", "B"]) == %{1 => "C", 2 => "A", 3 => "B"}
   end
 end
