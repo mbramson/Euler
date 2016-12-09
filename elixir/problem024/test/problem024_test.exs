@@ -21,6 +21,17 @@ defmodule LexicographicPermutationTest do
     assert ordered_permute([0, 1]) == ["01", "10"]
   end
 
+  # generate_next_permutation tests
+
+  test "next permutation of empty list is an empty list" do
+    assert next_permutation([]) == []
+  end
+
+  @tag :skip
+  test "next permutation of two element list is correct" do
+    assert next_permutation([0, 1]) == [1, 0]
+  end
+
   # generate_order_map tests
 
   test "order map of no element list is empty map" do

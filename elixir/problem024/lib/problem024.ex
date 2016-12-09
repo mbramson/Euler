@@ -23,7 +23,7 @@ defmodule LexicographicPermutation do
 
   ## Example
   
-      iex> generate_order_map(["A", "B", "C"])
+      iex> LexicographicPermutation.generate_order_map(["A", "B", "C"])
       %{1 => "A", 2 => "B", 3 => "C"}
   """
   @spec generate_order_map([any()]) :: %{binary() => integer()}
@@ -35,6 +35,21 @@ defmodule LexicographicPermutation do
   defp _generate_order_map([], _, acc), do: acc
   defp _generate_order_map([head|tail], index, acc) do
     _generate_order_map(tail, index + 1, acc ++ [{index, head}])
+  end
+
+  @doc """
+  Given a list of sequential integers starting at 0, computes the next lexicographic
+  permutation of that list.
+
+  ## Example
+
+      iex> LexicographicPermutation.next_permutation([0, 1])
+      [1, 0]
+  """
+  @spec next_permutation([integer()]) :: [integer()]
+  def next_permutation([]), do: []
+  def next_permutation(list) do
+    list
   end
 
 end
